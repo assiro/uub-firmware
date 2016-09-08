@@ -1,0 +1,76 @@
+{
+   guistr: "# # String gsaved with Nlview 6.4.12  2014-12-16 bk=1.3272 VDI=35 GEI=35 GUI=JA:1.8
+#  -string -flagsOSRD
+preplace port s_axi_aclk -pg 1 -y 530 -defaultsOSRD
+preplace port SHWR_MEM4 -pg 1 -y 940 -defaultsOSRD
+preplace port SHWR_MEM4P -pg 1 -y 960 -defaultsOSRD
+preplace port SHWR_MEM3P -pg 1 -y 510 -defaultsOSRD
+preplace port SHWR_MEM2P -pg 1 -y 790 -defaultsOSRD
+preplace port SHWR_MEM1P -pg 1 -y 210 -defaultsOSRD
+preplace port SHWR_MEM0 -pg 1 -y 350 -defaultsOSRD
+preplace port SHWR_MEM1 -pg 1 -y 170 -defaultsOSRD
+preplace port SHWR_MEM0P -pg 1 -y 370 -defaultsOSRD
+preplace port SHWR_MEM2 -pg 1 -y 770 -defaultsOSRD
+preplace port SHWR_MEM3 -pg 1 -y 490 -defaultsOSRD
+preplace portBus rstb -pg 1 -y 1050 -defaultsOSRD
+preplace portBus SHWR_DATA0 -pg 1 -y 120 -defaultsOSRD
+preplace portBus SHWR_DATA1 -pg 1 -y 140 -defaultsOSRD
+preplace portBus SHWR_DATA2 -pg 1 -y 1080 -defaultsOSRD
+preplace portBus SHWR_ADDR -pg 1 -y 590 -defaultsOSRD
+preplace portBus s_axi_aresetn -pg 1 -y 810 -defaultsOSRD
+preplace portBus SHWR_DATA3 -pg 1 -y 630 -defaultsOSRD
+preplace portBus CLK120 -pg 1 -y 610 -defaultsOSRD
+preplace portBus SHWR_DATA4 -pg 1 -y 1030 -defaultsOSRD
+preplace inst axi_bram_ctrl_2 -pg 1 -lvl 2 -y 1010 -defaultsOSRD
+preplace inst axi_bram_ctrl_3 -pg 1 -lvl 2 -y 540 -defaultsOSRD
+preplace inst axi_bram_ctrl_4 -pg 1 -lvl 2 -y 890 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 2 -y 680 -defaultsOSRD
+preplace inst axi_crossbar_0 -pg 1 -lvl 1 -y 380 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 2 -y 760 -defaultsOSRD
+preplace inst axi_crossbar_1 -pg 1 -lvl 1 -y 200 -defaultsOSRD
+preplace inst axi_crossbar_2 -pg 1 -lvl 1 -y 800 -defaultsOSRD
+preplace inst axi_crossbar_3 -pg 1 -lvl 1 -y 520 -defaultsOSRD
+preplace inst axi_crossbar_4 -pg 1 -lvl 1 -y 970 -defaultsOSRD
+preplace inst blk_mem_gen_1 -pg 1 -lvl 3 -y 110 -defaultsOSRD
+preplace inst blk_mem_gen_2 -pg 1 -lvl 3 -y 330 -defaultsOSRD
+preplace inst blk_mem_gen_3 -pg 1 -lvl 3 -y 610 -defaultsOSRD
+preplace inst blk_mem_gen_4 -pg 1 -lvl 3 -y 1070 -defaultsOSRD
+preplace inst axi_bram_ctrl_0 -pg 1 -lvl 2 -y 400 -defaultsOSRD
+preplace inst blk_mem_gen_5 -pg 1 -lvl 3 -y 840 -defaultsOSRD
+preplace inst axi_bram_ctrl_1 -pg 1 -lvl 2 -y 260 -defaultsOSRD
+preplace netloc S_AXI_ARESETN_3 1 0 2 200 700 530
+preplace netloc xlconstant_1_dout 1 2 1 880
+preplace netloc axi_crossbar_0_M00_AXI 1 1 1 N
+preplace netloc axi_crossbar_3_M00_AXI 1 1 1 N
+preplace netloc SHWR_MEM3_1 1 0 1 N
+preplace netloc SHWR_MEM2_1 1 0 1 N
+preplace netloc SHWR_MEM1P_1 1 0 1 200
+preplace netloc axi_bram_ctrl_0_BRAM_PORTA 1 2 1 830
+preplace netloc S_AXI_CLK_3 1 0 2 220 710 520
+preplace netloc axi_bram_ctrl_2_BRAM_PORTA 1 2 1 890
+preplace netloc axi_crossbar_1_M00_AXI 1 1 1 530
+preplace netloc sde_trigger_0_SHWR_DATA0 1 0 3 NJ 120 NJ 120 N
+preplace netloc TRIGGER_CLK_3 1 0 3 190 620 NJ 620 820
+preplace netloc xlconstant_0_dout 1 2 1 870
+preplace netloc axi_bram_ctrl_3_BRAM_PORTA 1 2 1 N
+preplace netloc axi_crossbar_2_M00_AXI 1 1 1 500
+preplace netloc SHWR_MEM2P_1 1 0 1 N
+preplace netloc SHWR_MEM0_1 1 0 1 N
+preplace netloc sde_trigger_0_SHWR_ADDR 1 0 3 NJ 610 NJ 610 860
+preplace netloc sde_trigger_0_SHWR_DATA1 1 0 3 NJ 280 NJ 330 840
+preplace netloc axi_bram_ctrl_4_BRAM_PORTA 1 2 1 830
+preplace netloc axi_crossbar_4_M00_AXI 1 1 1 540
+preplace netloc SHWR_MEM3P_1 1 0 1 N
+preplace netloc sde_trigger_0_SHWR_DATA2 1 0 3 N 630 NJ 630 NJ
+preplace netloc SHWR_MEM4_1 1 0 1 N
+preplace netloc SHWR_MEM4P_1 1 0 1 N
+preplace netloc sde_trigger_0_SHWR_DATA3 1 0 3 NJ 1080 NJ 1080 N
+preplace netloc axi_bram_ctrl_1_BRAM_PORTA 1 2 1 N
+preplace netloc sde_trigger_0_SHWR_DATA4 1 0 3 240 880 NJ 820 NJ
+preplace netloc RST_1 1 0 3 230 720 NJ 810 850
+preplace netloc SHWR_MEM1_1 1 0 1 N
+preplace netloc SHWR_MEM0P_1 1 0 1 N
+levelinfo -pg 1 170 370 690 990 1120
+",
+}
+0

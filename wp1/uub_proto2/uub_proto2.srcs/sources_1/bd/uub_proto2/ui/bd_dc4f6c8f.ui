@@ -1,0 +1,84 @@
+{
+   guistr: "# # String gsaved with Nlview 6.4.12  2014-12-16 bk=1.3272 VDI=35 GEI=35 GUI=JA:1.8
+#  -string -flagsOSRD
+preplace portBus IBUF_CK0_N -pg 1 -y 180 -defaultsOSRD
+preplace portBus IBUF_DS0_P -pg 1 -y 40 -defaultsOSRD
+preplace portBus IBUF_DS4_N -pg 1 -y 780 -defaultsOSRD
+preplace portBus IBUF_CK0_P -pg 1 -y 160 -defaultsOSRD
+preplace portBus IBUF_DS4_P -pg 1 -y 760 -defaultsOSRD
+preplace portBus IBUF_DS1_N -pg 1 -y 280 -defaultsOSRD
+preplace portBus IBUF_CK3_N -pg 1 -y 980 -defaultsOSRD
+preplace portBus SYNC_OUT0 -pg 1 -y 170 -defaultsOSRD
+preplace portBus IBUF_DS1_P -pg 1 -y 260 -defaultsOSRD
+preplace portBus SYNC_OUT1 -pg 1 -y 290 -defaultsOSRD
+preplace portBus IBUF_DS3_N -pg 1 -y 880 -defaultsOSRD
+preplace portBus IBUF_CK3_P -pg 1 -y 960 -defaultsOSRD
+preplace portBus SYNC_OUT2 -pg 1 -y 590 -defaultsOSRD
+preplace portBus IBUF_CK1_N -pg 1 -y 380 -defaultsOSRD
+preplace portBus IBUF_CK4_N -pg 1 -y 480 -defaultsOSRD
+preplace portBus SYNC_OUT3 -pg 1 -y 890 -defaultsOSRD
+preplace portBus IBUF_DS3_P -pg 1 -y 860 -defaultsOSRD
+preplace portBus IBUF_DS2_N -pg 1 -y 580 -defaultsOSRD
+preplace portBus IBUF_CK1_P -pg 1 -y 360 -defaultsOSRD
+preplace portBus SYNC_OUT4 -pg 1 -y 770 -defaultsOSRD
+preplace portBus IBUF_CK4_P -pg 1 -y 460 -defaultsOSRD
+preplace portBus IBUF_CK2_N -pg 1 -y 680 -defaultsOSRD
+preplace portBus CLK120 -pg 1 -y 110 -defaultsOSRD
+preplace portBus IBUF_DS2_P -pg 1 -y 560 -defaultsOSRD
+preplace portBus IBUF_CK2_P -pg 1 -y 660 -defaultsOSRD
+preplace portBus IBUF_DS0_N -pg 1 -y 60 -defaultsOSRD
+preplace inst util_ds_buf_1 -pg 1 -lvl 1 -y 270 -defaultsOSRD
+preplace inst util_ds_buf_2 -pg 1 -lvl 1 -y 370 -defaultsOSRD
+preplace inst util_ds_buf_3 -pg 1 -lvl 1 -y 50 -defaultsOSRD
+preplace inst util_ds_buf_4 -pg 1 -lvl 1 -y 170 -defaultsOSRD
+preplace inst util_ds_buf_10 -pg 1 -lvl 1 -y 770 -defaultsOSRD
+preplace inst util_ds_buf_11 -pg 1 -lvl 1 -y 470 -defaultsOSRD
+preplace inst util_ds_buf_5 -pg 1 -lvl 1 -y 670 -defaultsOSRD
+preplace inst util_ds_buf_6 -pg 1 -lvl 1 -y 870 -defaultsOSRD
+preplace inst util_ds_buf_7 -pg 1 -lvl 1 -y 970 -defaultsOSRD
+preplace inst util_ds_buf_8 -pg 1 -lvl 1 -y 570 -defaultsOSRD
+preplace inst ddr_synchronizer_24bit_0 -pg 1 -lvl 2 -y 170 -defaultsOSRD
+preplace inst ddr_synchronizer_24bit_1 -pg 1 -lvl 2 -y 290 -defaultsOSRD
+preplace inst ddr_synchronizer_24bit_2 -pg 1 -lvl 2 -y 590 -defaultsOSRD
+preplace inst ddr_synchronizer_24bit_3 -pg 1 -lvl 2 -y 890 -defaultsOSRD
+preplace inst ddr_synchronizer_24bit_4 -pg 1 -lvl 2 -y 770 -defaultsOSRD
+preplace netloc ADC3_CK_N_1 1 0 1 N
+preplace netloc adc1_p_1 1 0 1 N
+preplace netloc util_ds_buf_7_IBUF_OUT 1 1 1 480
+preplace netloc util_ds_buf_5_IBUF_OUT 1 1 1 480
+preplace netloc util_ds_buf_2_IBUF_OUT 1 1 1 460
+preplace netloc util_ds_buf_1_IBUF_OUT 1 1 1 N
+preplace netloc adc4_p_1 1 0 1 N
+preplace netloc adc2_p_1 1 0 1 N
+preplace netloc In_regional_ck_0_IBUF_OUT 1 0 2 NJ 110 470
+preplace netloc util_ds_buf_6_IBUF_OUT 1 1 1 N
+preplace netloc adc2_n_1 1 0 1 N
+preplace netloc adc1_n_1 1 0 1 N
+preplace netloc adc4_n_1 1 0 1 N
+preplace netloc util_ds_buf_4_IBUF_OUT 1 1 1 N
+preplace netloc adc0_n_2 1 0 1 N
+preplace netloc ADC0_CK_P_2 1 0 1 N
+preplace netloc adc3_n_1 1 0 1 N
+preplace netloc ADC3_CK_P_1 1 0 1 N
+preplace netloc adc3_p_1 1 0 1 N
+preplace netloc ddr_synchronizer_24bit_1_SYNC_OUT 1 2 1 N
+preplace netloc ADC1_CK_N_1 1 0 1 N
+preplace netloc ADC2_CK_P_1 1 0 1 N
+preplace netloc ADC2_CK_N_1 1 0 1 N
+preplace netloc ADC4_CK_N_1 1 0 1 N
+preplace netloc util_ds_buf_8_IBUF_OUT 1 1 1 N
+preplace netloc util_ds_buf_3_IBUF_OUT 1 1 1 480
+preplace netloc ddr_synchronizer_26bit_4_SYNC_OUT 1 2 1 N
+preplace netloc ADC0_CK_N_1 1 0 1 N
+preplace netloc util_ds_buf_10_IBUF_OUT 1 1 1 450
+preplace netloc util_ds_buf_11_IBUF_OUT 1 1 1 460
+preplace netloc ADC1_CK_P_1 1 0 1 N
+preplace netloc ddr_synchronizer_26bit_2_SYNC_OUT 1 2 1 N
+preplace netloc ADC4_CK_P_1 1 0 1 N
+preplace netloc adc0_p_1 1 0 1 N
+preplace netloc ddr_synchronizer_26bit_3_SYNC_OUT 1 2 1 N
+preplace netloc ddr_synchronizer_26bit_1_SYNC_OUT 1 2 1 N
+levelinfo -pg 1 160 320 610 770
+",
+}
+0

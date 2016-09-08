@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="synth_1" LaunchDir="c:/xilinx/vivado/2015.2/progetti/uub_nitz_assiro_new/uub_proto2.tmp/delay_input_v1_1_project/delay_input_v1_1_project.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+</Runs>
+
