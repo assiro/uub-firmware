@@ -17,7 +17,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0002be6e</spirit:value>
+            <spirit:value>bf739573</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -32,7 +32,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0002be6e</spirit:value>
+            <spirit:value>bf739573</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -326,6 +326,19 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
+        <spirit:name>NITZ_TRIG</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
         <spirit:name>EXT_TRIG</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
@@ -419,7 +432,7 @@
       <spirit:file>
         <spirit:name>wp1_adc_control.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_0002be6e</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_bf739573</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -462,7 +475,7 @@
         <xilinx:canUpgradeFrom>elettronica.le.infn.it:user:WP1_ADC_Control:1.0</xilinx:canUpgradeFrom>
         <xilinx:canUpgradeFrom>elettronica.le.infn.it:user:WP1_ADC_Control:1.1</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2016-08-29T09:07:37Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2016-09-14T21:02:50Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="xilinx.com:user:WP1_ADC_Control:1.0_ARCHIVE_LOCATION">C:/Xilinx/Vivado/2015.2/progetti/uub_proto/ip_repo/WP1_ADC_Control</xilinx:tag>
         <xilinx:tag xilinx:name="INFN:user:WP1_ADC_Control:1.0_ARCHIVE_LOCATION">C:/Xilinx/Vivado/2015.2/progetti/uub_proto/ip_repo/WP1_ADC_Control</xilinx:tag>
@@ -473,8 +486,8 @@
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2015.2.1</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="3f9e649d"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="4a422f84"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e92ada1f"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="9c7294c7"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="a2309e67"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>

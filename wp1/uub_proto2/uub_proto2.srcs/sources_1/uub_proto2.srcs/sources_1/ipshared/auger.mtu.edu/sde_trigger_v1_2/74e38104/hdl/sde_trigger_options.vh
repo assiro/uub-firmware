@@ -1,4 +1,0 @@
-`ifndef _TRIGGER_OPTIONS
-  `define _TRIGGER_OPTIONS
-  `define COMPILE_DATE 'h11160816
-`endif

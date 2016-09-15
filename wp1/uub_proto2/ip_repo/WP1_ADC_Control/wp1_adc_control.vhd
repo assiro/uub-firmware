@@ -2,6 +2,15 @@
 -- Company: INFN
 -- Roberto Assiro, Pietro Creti
 -- ADC data module
+-- Config trigger register Mask config 
+--Config_trig bit(0) = (Internal clock for acquisition data to BRAM)
+--Config_trig bit(1) = (1 = Internal TRIGGER) (0 = External TRIGGER)
+--Config_trig bit(2) = (ASY LED signal)
+--Config_trig bit(3) = Enable LED shot from PPS (1 = Enabled  0 = disabled)
+--Config_trig bit(4) = trigger FPGA = 1 trigger mask bit0 = 0
+--Config_trig bit(5) = trigger Nitz FPGA =1 
+--Config_trig bit(6) = nc
+--Config_trig bit(7) = Riarmo trigger
 -----------------------------------------------------------------------
 library ieee;
   use ieee.std_logic_1164.all;
@@ -29,14 +38,13 @@ entity WP1_ADC_Control is
          ADC3_mem            : out  std_logic_vector(31 downto 0);
          ADC4_mem            : out  std_logic_vector(31 downto 0);
           
-         ADDR_mem            : out  std_logic_vector(31 downto 0);        
-            
---         ADC_data            : out  std_logic_vector(119 downto 0);   -- Interface bus to trigger      
+         ADDR_mem            : out  std_logic_vector(31 downto 0);          
 
          Stop_Addr           : buffer  std_logic_vector(15 downto 0); -- byte del valore del conteggio di indirizzo bram all'arrivo del trigger esterno ultimo valore
 
          wea                 : out  std_logic_vector(3 downto 0);
          ASY_TRIG            : out  std_logic;
+         NITZ_TRIG           : in   std_logic;
          EXT_TRIG            : in   std_logic;
          TRIG_OUT            : out  std_logic;
          Config_Trig         : in   std_logic_vector(31 downto 0);
@@ -69,14 +77,6 @@ architecture Behavioral of WP1_ADC_Control is
   signal threshold2 : std_logic_vector (11 downto 0);
   signal threshold3 : std_logic_vector (11 downto 0);
   signal trig_mode  : std_logic;
-
---  signal threshold4_0 : std_logic_vector (11 downto 0);
---  signal threshold5_0 : std_logic_vector (11 downto 0);
---  signal threshold1_1 : std_logic_vector (11 downto 0); 
---  signal threshold2_1 : std_logic_vector (11 downto 0);
---  signal threshold3_1 : std_logic_vector (11 downto 0);
---  signal threshold4_1 : std_logic_vector (11 downto 0);
---  signal threshold5_1 : std_logic_vector (11 downto 0);
     
   signal conteggio : std_logic_vector (15 downto 0);
   signal wea_reg : std_logic_vector (3 downto 0);
@@ -100,22 +100,19 @@ architecture Behavioral of WP1_ADC_Control is
   signal arm_trig2  : std_logic;
   signal arm_trig3  : std_logic;
   signal arm_trig_ok  : std_logic;
-
   signal veto_trig  : std_logic;
   
---  signal data_latch  : std_logic_vector (119 downto 0); -- latch for data SDE trigger
   
 begin
 
 process(RSTn, FPGA_CK) 
  begin
    if RSTn = '0' then
-       threshold1 <= "100000000000"; 
+       threshold1 <= "100000000000"; -- at reset trigger in the midle
        threshold2 <= "100000000000";
        threshold3 <= "100000000000";
        trig_mode <= '0';    
    elsif rising_edge(FPGA_CK) then 
-
         if (TRIG_TRESH(31) = '1') then
             threshold1 <= TRIG_TRESH(9 downto 0) & "00";
             threshold2 <= TRIG_TRESH(19 downto 10) & "00";
@@ -127,33 +124,27 @@ end process;
 
 
  --******************************************************************
- -- Trigger interno su threshold
+ -- Trigger interno su threshold dei canali amplificati sui PMT
  --******************************************************************
  process(RSTn, FPGA_CK) 
  begin
    if RSTn = '0' then
---       threshold1_0 <= "011111111111"; -- preset a mezza scala   
        trig_flag <= '0';   
    elsif rising_edge(FPGA_CK) then 
---        threshold <= Config_Trig(19 downto 8);
---        if ((adc0(11 downto 0) < threshold1_0 or adc0(24 downto 13) < threshold1_0) 
---           or (adc1(11 downto 0) < threshold1_0 or adc1(24 downto 13) < threshold1_0)  
---           or (adc2(11 downto 0) < threshold1_0 or adc2(24 downto 13) < threshold1_0) 
---           or (adc3(11 downto 0) < threshold1_0 or adc3(24 downto 13) < threshold1_0)
---           or (adc4(11 downto 0) < threshold1_0 or adc4(24 downto 13) < threshold1_0)) then
-          if (trig_mode = '1') then
-                if ((adc0(11 downto 0) <  threshold1) AND 
-                    (adc1(11 downto 0) <  threshold2) AND
-                    (adc2(11 downto 0) <  threshold2)) then
+
+          if (trig_mode = '1') then  -- AND canali amplificati PMT
+                if ((adc0(23 downto 12) <  threshold1) AND 
+                    (adc1(23 downto 12) <  threshold2) AND
+                    (adc2(23 downto 12) <  threshold2)) then
                         trig_flag <= '1';
                 else
                         trig_flag <= '0';
                 end if;
                 
-          else
-                if ((adc0(11 downto 0) <  threshold1) or 
-                    (adc1(11 downto 0) <  threshold2) or
-                    (adc2(11 downto 0) <  threshold2)) then
+          else                      -- OR canali amplificati PMT
+                if ((adc0(23 downto 12) <  threshold1) or 
+                    (adc1(23 downto 12) <  threshold2) or
+                    (adc2(23 downto 12) <  threshold2)) then
                         trig_flag <= '1';
                  else
                         trig_flag <= '0';
@@ -176,16 +167,13 @@ end process;
 --       ADC_data  <= (others => '0');          
 --       flop_flip <= '0';
    elsif rising_edge(FPGA_CK) then   
---     scrittura diretta dei dati come vengono da splittaggio  il bit di overflow e' scartato
-       adc0_data <= "0000" & adc0(23 downto 12) & "0000" & adc0(11 downto 0);    
-       adc1_data <= "0000" & adc1(23 downto 12) & "0000" & adc1(11 downto 0);                            
-       adc2_data <= "0000" & adc2(23 downto 12) & "0000" & adc2(11 downto 0);    
-       adc3_data <= "0000" & adc3(23 downto 12) & "0000" & adc3(11 downto 0);
-       adc4_data <= "0000" & adc4(23 downto 12) & "0000" & adc4(11 downto 0);  
-        
---     ADC data to SDE trigger without over flow bit --- 10x12 bit      
---       ADC_data <= (4095 - adc4(24 downto 13)) & (4095 - adc4(11 downto 0)) & (4095 - adc3(24 downto 13)) & (4095 - adc3(11 downto 0)) & (4095 - adc2(24 downto 13)) & (4095 - adc2(11 downto 0)) & (4095 - adc1(24 downto 13)) & (4095 - adc1(11 downto 0)) & (4095 - adc0(24 downto 13)) & (4095 - adc0(11 downto 0));
-
+--     scrittura diretta dei dati come vengono da splittaggio  il bit di overflow e' scartato 
+      
+       adc0_data <= "0000" & adc0(11 downto 0) & "0000" & adc0(23 downto 12);    
+       adc1_data <= "0000" & adc1(11 downto 0) & "0000" & adc1(23 downto 12);                            
+       adc2_data <= "0000" & adc2(11 downto 0) & "0000" & adc2(23 downto 12);    
+       adc3_data <= "0000" & adc3(11 downto 0) & "0000" & adc3(23 downto 12);
+       adc4_data <= "0000" & adc4(11 downto 0) & "0000" & adc4(23 downto 12);    
   end if;
  end process;
 
@@ -199,8 +187,7 @@ if RSTn = '0' then
         wea_reg <= (others => '1');
         enable_mem <= '1';
         veto_trig <= '0';
-        run_stop <= '0';
-       
+        run_stop <= '0';     
         Stop_Addr <= (others => '0');
         more_count <= '0';
         after_trig_count <= (others => '0');
@@ -224,7 +211,6 @@ elsif rising_edge(FPGA_CK) then
             end if;    
 --  TRIGGER ESTERNO SE BIT 1 di conf_trig = 0
     elsif (Config_Trig(1) = '0') then  -- se il bit 1 di config_trig e' 0 agisco sul trigger esterno immesso su ext_trig
-
 
             if (arm_trig_ok = '1') then      -- controllo bit 7 per riarmare attesa trigger esterno dopo aver letto il valore del conteggio dell'indirizzo in ram
                 run_stop <= '0';
@@ -271,7 +257,7 @@ end process;
 
 
 --------------------------------------------------------------------
--- gestione trigger interno ed esterno
+-- gestione trigger interno da fpga - interno da sistema (bit0 conf_trig) - esterno da sma uub (bit 4conf_trig)
 process (RSTn,FPGA_CK)
 begin
  if RSTn = '0' then
@@ -280,7 +266,7 @@ begin
     trig2 <= '0';
     trig3 <= '0';
  elsif rising_edge(FPGA_CK) then
-    trig0 <= Config_Trig(0) or (EXT_TRIG and (not Config_Trig(1)));
+    trig0 <= ((Config_Trig(0) or (EXT_TRIG and (not Config_Trig(1)))) and (not Config_Trig(4))and (not Config_Trig(5))) or (trig_flag and Config_Trig(4)) or (NITZ_TRIG and Config_Trig(5));
     trig1 <= trig0;
     trig2 <= trig1;
     trig3 <= trig2;

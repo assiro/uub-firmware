@@ -1,5 +1,6 @@
 // Data Acquisition from ADC data to file
 // implemented USB write file if memory key is connected
+// written by R.Assiro and G.Marsella 02 2016
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -94,7 +95,58 @@ int main(int argc, char *argv[])
 			}
 			printf ("Event %d OK\n",nevt);
 		}
+		//////////////// FPGA  TRIGGER ////////////////////////////////////////
+		if (!strcmp(argv[1], "-f")){
+					data_trig = 0;
+					value = 0b10010000; //impostazione per trigger da fpga
+					*((unsigned *)(ptrt + page_offset)) = value;// Write value to the device register
+						usleep(1);
+					value = 0b00010000;
+					*((unsigned *)(ptrt + page_offset)) = value;
+					printf("Waiting trigger... ");
+					page_addr = (stop_trig & (~(page_size-1)));	//		data_trig = *stop_trig;
+					page_offset = stop_trig - page_addr;
+					ptrt1 = mmap(NULL, page_size, PROT_READ|PROT_WRITE, MAP_SHARED, fd, page_addr);
+					Status = 0;
+					while(Status != 1)		// wait trigger
+					{
+						data_trig = *((unsigned *)(ptrt1 + page_offset));
+						if (data_trig > 0b1000000000000000) {
+								Status = 1;
+								data_trig = data_trig & 0b0111111111111111;
 
+				                page_offset=(data_trig + 4095 * 4 -100) % (4095 * 4);
+					    }
+					}
+					printf ("Done! ... FPGA event %d\n",nevt);
+					//	sleep (1);
+		}
+
+		//////////////// Nitz FPGA TRIGGER ////////////////////////////////////////
+		if (!strcmp(argv[1], "-n")){
+					data_trig = 0;
+					value = 0b10100000; //impostazione per trigger da fpga
+					*((unsigned *)(ptrt + page_offset)) = value;// Write value to the device register
+						usleep(1);
+					value = 0b00100000;
+					*((unsigned *)(ptrt + page_offset)) = value;
+					printf("Waiting trigger... ");
+					page_addr = (stop_trig & (~(page_size-1)));	//		data_trig = *stop_trig;
+					page_offset = stop_trig - page_addr;
+					ptrt1 = mmap(NULL, page_size, PROT_READ|PROT_WRITE, MAP_SHARED, fd, page_addr);
+					Status = 0;
+					while(Status != 1)		// wait trigger
+					{
+						data_trig = *((unsigned *)(ptrt1 + page_offset));
+						if (data_trig > 0b1000000000000000) {
+								Status = 1;
+								data_trig = data_trig & 0b0111111111111111;
+				                page_offset=(data_trig + 4095 * 4 -100) % (4095 * 4);
+					    }
+					}
+					printf ("Done! ... Nitz event %d\n",nevt);
+					//	sleep (1);
+		}
 
 		unsigned int bram[5];
 		int w, ADC0A[5], ADC0B[5];
@@ -141,8 +193,13 @@ int main(int argc, char *argv[])
 void usage(void)
 {
 	printf("____________________________\n");
-	printf("|    -e External trigger   |\n");
-	printf("|    -i internal trigger   |\n");
+	printf("|         ACQUIRE          |\n");
+	printf("|   -e External SMA input  |\n");
+	printf("|   -i internal trigger    |\n");
+	printf("|   -f FPGA Lecce trigger  |\n");
+	printf("|   -n FPGA Nitz trigger   |\n");
+	printf("|                          |\n");
+	printf("|    written by R.Assiro   |\n");
 	printf("|__________________________|\n");
 	exit(1);
 }

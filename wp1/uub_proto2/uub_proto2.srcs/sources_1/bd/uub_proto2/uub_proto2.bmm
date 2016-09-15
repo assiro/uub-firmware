@@ -8,7 +8,7 @@ DEFINE_MEMORY_TYPE trigger_memory_block_shower_memory_block_blk_mem_gen_4_MEM_DE
 DEFINE_MEMORY_TYPE trigger_memory_block_shower_memory_block_blk_mem_gen_3_MEM_DEVICE [0x00008000] 32;
 DEFINE_MEMORY_TYPE trigger_memory_block_shower_memory_block_blk_mem_gen_5_MEM_DEVICE [0x00008000] 32;
 DEFINE_MEMORY_TYPE WP1_ADC_CONTROL_blk_mem_gen_0_MEM_DEVICE [0x00004000] 32;
-DEFINE_MEMORY_TYPE WP1_ADC_CONTROL_blk_mem_gen_3_MEM_DEVICE [0x00004000] 32;
+DEFINE_MEMORY_TYPE WP1_ADC_CONTROL_blk_mem_gen_1_MEM_DEVICE [0x00004000] 32;
 DEFINE_MEMORY_TYPE WP1_ADC_CONTROL_blk_mem_gen_2_MEM_DEVICE [0x00004000] 32;
 
 ADDRESS_MAP zync_block_processing_system7_0 ARM 100 zync_block/processing_system7_0
@@ -60,9 +60,9 @@ ADDRESS_MAP zync_block_processing_system7_0 ARM 100 zync_block/processing_system
       
       END_BUS_BLOCK;
    END_ADDRESS_SPACE;
-   ADDRESS_SPACE WP1_ADC_CONTROL_blk_mem_gen_3_ADDR_SPACE WP1_ADC_CONTROL_blk_mem_gen_3_MEM_DEVICE  [0x51000000:0x51003fff] WP1_ADC_CONTROL/axi_bram_ctrl_1
+   ADDRESS_SPACE WP1_ADC_CONTROL_blk_mem_gen_1_ADDR_SPACE WP1_ADC_CONTROL_blk_mem_gen_1_MEM_DEVICE  [0x51000000:0x51003fff] WP1_ADC_CONTROL/axi_bram_ctrl_1
       BUS_BLOCK
-      WP1_ADC_CONTROL_blk_mem_gen_3_BUS_BLK [31:0] INPUT = "uub_proto2_blk_mem_gen_0_4.mem";
+      WP1_ADC_CONTROL_blk_mem_gen_1_BUS_BLK [31:0] INPUT = "uub_proto2_blk_mem_gen_0_2.mem";
       
       END_BUS_BLOCK;
    END_ADDRESS_SPACE;

@@ -262,8 +262,11 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_axi_
 # IP: bd/uub_proto2/ip/uub_proto2_WP7_LED_Control_0_0/uub_proto2_WP7_LED_Control_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_WP7_LED_Control_0_0 || ORIG_REF_NAME==uub_proto2_WP7_LED_Control_0_0}]
 
-# IP: bd/uub_proto2/ip/uub_proto2_util_vector_logic_0_0/uub_proto2_util_vector_logic_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_util_vector_logic_0_0 || ORIG_REF_NAME==uub_proto2_util_vector_logic_0_0}]
+# IP: bd/uub_proto2/ip/uub_proto2_axi_gpio_2_0/uub_proto2_axi_gpio_2_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_axi_gpio_2_0 || ORIG_REF_NAME==uub_proto2_axi_gpio_2_0}]
+
+# IP: bd/uub_proto2/ip/uub_proto2_axi_gpio_3_0/uub_proto2_axi_gpio_3_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_axi_gpio_3_0 || ORIG_REF_NAME==uub_proto2_axi_gpio_3_0}]
 
 # IP: bd/uub_proto2/ip/uub_proto2_tier2_xbar_0_0/uub_proto2_tier2_xbar_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_tier2_xbar_0_0 || ORIG_REF_NAME==uub_proto2_tier2_xbar_0_0}]
@@ -298,7 +301,7 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto
 # IP: bd/uub_proto2/ip/uub_proto2_auto_pc_0/uub_proto2_auto_pc_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto_pc_0 || ORIG_REF_NAME==uub_proto2_auto_pc_0}]
 
-# IP: bd/uub_proto2/ip/uub_proto2_auto_us_0/uub_proto2_auto_us_0.xci
+# IP: bd/uub_proto2/ip/uub_proto2_auto_us_0_1/uub_proto2_auto_us_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto_us_0 || ORIG_REF_NAME==uub_proto2_auto_us_0}]
 
 # IP: bd/uub_proto2/ip/uub_proto2_auto_us_1/uub_proto2_auto_us_1.xci
@@ -388,8 +391,20 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto
 # IP: bd/uub_proto2/ip/uub_proto2_auto_pc_8/uub_proto2_auto_pc_8.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto_pc_8 || ORIG_REF_NAME==uub_proto2_auto_pc_8}]
 
+# IP: bd/uub_proto2/ip/uub_proto2_auto_ds_27/uub_proto2_auto_ds_27.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto_ds_27 || ORIG_REF_NAME==uub_proto2_auto_ds_27}]
+
 # IP: bd/uub_proto2/ip/uub_proto2_auto_pc_9/uub_proto2_auto_pc_9.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto_pc_9 || ORIG_REF_NAME==uub_proto2_auto_pc_9}]
+
+# IP: bd/uub_proto2/ip/uub_proto2_auto_ds_28/uub_proto2_auto_ds_28.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto_ds_28 || ORIG_REF_NAME==uub_proto2_auto_ds_28}]
+
+# IP: bd/uub_proto2/ip/uub_proto2_auto_pc_10/uub_proto2_auto_pc_10.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto_pc_10 || ORIG_REF_NAME==uub_proto2_auto_pc_10}]
+
+# IP: bd/uub_proto2/ip/uub_proto2_auto_pc_11/uub_proto2_auto_pc_11.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto_pc_11 || ORIG_REF_NAME==uub_proto2_auto_pc_11}]
 
 # IP: bd/uub_proto2/ip/uub_proto2_auto_us_2/uub_proto2_auto_us_2.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==uub_proto2_auto_us_2 || ORIG_REF_NAME==uub_proto2_auto_us_2}]
@@ -506,6 +521,22 @@ set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {R
 # XDC: bd/uub_proto2/ip/uub_proto2_axi_gpio_1_0/uub_proto2_axi_gpio_1_0.xdc
 #dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==uub_proto2_axi_gpio_1_0 || ORIG_REF_NAME==uub_proto2_axi_gpio_1_0}] {/U0 }]/U0 ]]
 
+# XDC: bd/uub_proto2/ip/uub_proto2_axi_gpio_2_0/uub_proto2_axi_gpio_2_0_board.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==uub_proto2_axi_gpio_2_0 || ORIG_REF_NAME==uub_proto2_axi_gpio_2_0}] {/U0 }]/U0 ]]
+
+# XDC: bd/uub_proto2/ip/uub_proto2_axi_gpio_2_0/uub_proto2_axi_gpio_2_0_ooc.xdc
+
+# XDC: bd/uub_proto2/ip/uub_proto2_axi_gpio_2_0/uub_proto2_axi_gpio_2_0.xdc
+#dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==uub_proto2_axi_gpio_2_0 || ORIG_REF_NAME==uub_proto2_axi_gpio_2_0}] {/U0 }]/U0 ]]
+
+# XDC: bd/uub_proto2/ip/uub_proto2_axi_gpio_3_0/uub_proto2_axi_gpio_3_0_board.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==uub_proto2_axi_gpio_3_0 || ORIG_REF_NAME==uub_proto2_axi_gpio_3_0}] {/U0 }]/U0 ]]
+
+# XDC: bd/uub_proto2/ip/uub_proto2_axi_gpio_3_0/uub_proto2_axi_gpio_3_0_ooc.xdc
+
+# XDC: bd/uub_proto2/ip/uub_proto2_axi_gpio_3_0/uub_proto2_axi_gpio_3_0.xdc
+#dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==uub_proto2_axi_gpio_3_0 || ORIG_REF_NAME==uub_proto2_axi_gpio_3_0}] {/U0 }]/U0 ]]
+
 # XDC: bd/uub_proto2/ip/uub_proto2_tier2_xbar_0_0/uub_proto2_tier2_xbar_0_0_ooc.xdc
 
 # XDC: bd/uub_proto2/ip/uub_proto2_tier2_xbar_1_0/uub_proto2_tier2_xbar_1_0_ooc.xdc
@@ -549,9 +580,9 @@ set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {R
 
 # XDC: bd/uub_proto2/ip/uub_proto2_auto_pc_0/uub_proto2_auto_pc_0_ooc.xdc
 
-# XDC: bd/uub_proto2/ip/uub_proto2_auto_us_0/uub_proto2_auto_us_0_ooc.xdc
+# XDC: bd/uub_proto2/ip/uub_proto2_auto_us_0_1/uub_proto2_auto_us_0_ooc.xdc
 
-# XDC: bd/uub_proto2/ip/uub_proto2_auto_us_0/uub_proto2_auto_us_0_clocks.xdc
+# XDC: bd/uub_proto2/ip/uub_proto2_auto_us_0_1/uub_proto2_auto_us_0_clocks.xdc
 set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==uub_proto2_auto_us_0 || ORIG_REF_NAME==uub_proto2_auto_us_0}] {/inst }]/inst ]]
 
 # XDC: bd/uub_proto2/ip/uub_proto2_auto_us_1/uub_proto2_auto_us_1_ooc.xdc
@@ -675,7 +706,21 @@ set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {R
 
 # XDC: bd/uub_proto2/ip/uub_proto2_auto_pc_8/uub_proto2_auto_pc_8_ooc.xdc
 
+# XDC: bd/uub_proto2/ip/uub_proto2_auto_ds_27/uub_proto2_auto_ds_27_ooc.xdc
+
+# XDC: bd/uub_proto2/ip/uub_proto2_auto_ds_27/uub_proto2_auto_ds_27_clocks.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==uub_proto2_auto_ds_27 || ORIG_REF_NAME==uub_proto2_auto_ds_27}] {/inst }]/inst ]]
+
 # XDC: bd/uub_proto2/ip/uub_proto2_auto_pc_9/uub_proto2_auto_pc_9_ooc.xdc
+
+# XDC: bd/uub_proto2/ip/uub_proto2_auto_ds_28/uub_proto2_auto_ds_28_ooc.xdc
+
+# XDC: bd/uub_proto2/ip/uub_proto2_auto_ds_28/uub_proto2_auto_ds_28_clocks.xdc
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==uub_proto2_auto_ds_28 || ORIG_REF_NAME==uub_proto2_auto_ds_28}] {/inst }]/inst ]]
+
+# XDC: bd/uub_proto2/ip/uub_proto2_auto_pc_10/uub_proto2_auto_pc_10_ooc.xdc
+
+# XDC: bd/uub_proto2/ip/uub_proto2_auto_pc_11/uub_proto2_auto_pc_11_ooc.xdc
 
 # XDC: bd/uub_proto2/ip/uub_proto2_auto_us_2/uub_proto2_auto_us_2_ooc.xdc
 

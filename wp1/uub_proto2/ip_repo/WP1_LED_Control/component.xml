@@ -17,7 +17,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>4ea97c87</spirit:value>
+            <spirit:value>1d3a86cd</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -32,7 +32,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>4ea97c87</spirit:value>
+            <spirit:value>1d3a86cd</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -118,7 +118,7 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>data_set</spirit:name>
+        <spirit:name>delay_set</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
@@ -153,28 +153,22 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>src/wp1_adc_control.vhd</spirit:name>
+        <spirit:name>src/wp1_led_control.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
-        <spirit:userFileType>CHECKSUM_4ea97c87</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_1d3a86cd</spirit:userFileType>
+        <spirit:isIncludeFile>false</spirit:isIncludeFile>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>src/wp1_adc_control.vhd</spirit:name>
+        <spirit:name>src/wp1_led_control.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:isIncludeFile>false</spirit:isIncludeFile>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>xgui/WP7_LED_Control_v1_0.tcl</spirit:name>
-        <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
-        <spirit:userFileType>CHECKSUM_f92e9879</spirit:userFileType>
-      </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
   <spirit:description>WP7_LED_Control_v1_0</spirit:description>
@@ -198,7 +192,7 @@
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>elettronica.le.infn.it:user:WP1_LED_Control:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2016-05-06T14:03:46Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2016-09-14T11:06:18Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="xilinx.com:user:WP1_LED_Control:1.0_ARCHIVE_LOCATION">C:/Xilinx/Vivado/2015.2/progetti/uub_assiro/ip_repo/WP1_LED_Control</xilinx:tag>
         <xilinx:tag xilinx:name="elettronica.le.infn.it:user:WP1_LED_Control:1.0_ARCHIVE_LOCATION">C:/Xilinx/Vivado/2015.2/progetti/uub_assiro/ip_repo/WP1_LED_Control</xilinx:tag>
@@ -207,8 +201,8 @@
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2015.2.1</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="9a8e50ed"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="11a5aacc"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="91203a59"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="d80c9329"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="6b7076e3"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>

@@ -7,20 +7,21 @@
 #include <stdlib.h>
 #define DAC_ADDR		0x0C // DAC slave address DAC AD5316
 int file;
-int dac_led1, dac_led2, dac_led3, dac_led4;
+int dac_led1, dac_led2, dac_led3, dac_led4, delay;
 
 
 int main(int argc, char *argv[])
 {
 	if (argc == 1) {
-		 dac_led1 = 400;//argv[1];//valore canale 1 dac led
-		 dac_led3 = 400;//argv[2];//valore canale 3 dac led
+		 dac_led1 = 200;//argv[1];//valore canale 1 dac led
+		 dac_led3 = 0;//argv[2];//valore canale 3 dac led
 		// USCITA PX4
-		 dac_led2 = 600;//argv[3];//valore canale 2 dac led
-		 dac_led4 = 600;//argv[4];//valore canale 4 dac led
-		 printf("Default LED values %d  %d  %d  %d\n",dac_led1,dac_led2,dac_led3,dac_led4);
+		 dac_led2 = 200;//argv[3];//valore canale 2 dac led
+		 dac_led4 = 0;//argv[4];//valore canale 4 dac led
+		 delay = 0; //delay output on PPS pulse
+		 printf("Default LED values %d  %d  %d  %d - delay %d\n",dac_led1,dac_led2,dac_led3,dac_led4,delay);
 	}
-	else if (argc < 5 || argc > 6){
+	else if (argc < 5 || argc > 7){
 		usage();
 	}
 	else {
@@ -28,11 +29,13 @@ int main(int argc, char *argv[])
 		dac_led2 = atoi (argv[2]);
 		dac_led3 = atoi (argv[3]);
 		dac_led4 = atoi (argv[4]);
-		printf("LED values %d  %d  %d  %d\n",dac_led1,dac_led2,dac_led3,dac_led4);
+		delay = atoi (argv[5]);
+		printf("LED values %d  %d  %d  %d - delay %d\n",dac_led1,dac_led2,dac_led3,dac_led4, delay);
 	}
 
 	int fd, file,i,j, Status, data_trig;
 	int int_trig =  0x55000000;
+	int delay_reg = 0x56000000;
 	int value = 0;
 	unsigned page_addr, page_offset;
 	void *ptrt;
@@ -85,6 +88,15 @@ int main(int argc, char *argv[])
      	printf("Done!\n");
 
      	fd = open ("/dev/mem", O_RDWR);
+// delay setting
+     	page_addr = (delay_reg & (~(page_size-1)));
+     	page_offset = delay_reg - page_addr;
+     	ptrt = mmap(NULL, page_size, PROT_READ|PROT_WRITE, MAP_SHARED, fd, page_addr);
+
+     	*((unsigned *)(ptrt + page_offset)) = delay;// Write value to the device register
+
+
+//trigger register init
      	page_addr = (int_trig & (~(page_size-1)));
      	page_offset = int_trig - page_addr;
      	ptrt = mmap(NULL, page_size, PROT_READ|PROT_WRITE, MAP_SHARED, fd, page_addr);

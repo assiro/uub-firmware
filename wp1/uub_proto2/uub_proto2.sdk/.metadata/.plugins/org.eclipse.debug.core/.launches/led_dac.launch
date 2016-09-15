@@ -26,7 +26,7 @@
 <stringAttribute key="com.xilinx.sdk.tcf.debug.uitarget.peer" value="UUB"/>
 <booleanAttribute key="org.eclipse.tcf.debug.AttachChildren" value="true"/>
 <stringAttribute key="org.eclipse.tcf.debug.LocalProgramFile" value="Debug/led_dac.elf"/>
-<stringAttribute key="org.eclipse.tcf.debug.ProgramFile" value="bin/led_dac"/>
+<stringAttribute key="org.eclipse.tcf.debug.ProgramFile" value="/bin/led_dac"/>
 <stringAttribute key="org.eclipse.tcf.debug.ProjectName" value="led_dac"/>
 <booleanAttribute key="org.eclipse.tcf.debug.StopAtEntry" value="false"/>
 <booleanAttribute key="org.eclipse.tcf.debug.StopAtMain" value="false"/>

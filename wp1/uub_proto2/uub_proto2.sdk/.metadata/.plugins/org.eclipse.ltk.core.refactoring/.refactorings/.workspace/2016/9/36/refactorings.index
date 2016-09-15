@@ -6,3 +6,7 @@
 1473353076102	Delete resource 'script'
 1473368753417	Delete resource 'pmt_hv'
 1473369560526	Delete resource 'pmt_hv'
+1473438750690	Delete resource 'pmt_hv'
+1473441088837	Rename resource 'trigger'
+1473441103563	Rename resource 'trigger_wp1'
+1473441109779	Delete resource 'trigger/Debug/trigger_wp1.elf'

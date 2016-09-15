@@ -1,2 +1,3 @@
+com.xilinx.sdk.targetmanager.default_peer_pref=assiro
 com.xilinx.sdk.targetmanager.default_peer_pref_linux_tcf_agent=UUB
 eclipse.preferences.version=1

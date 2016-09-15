@@ -10,8 +10,8 @@ void usage(void);
 int main(int argc, char *argv[])
 {
 	int fd, i, Status, data_trig;
-	int int_trig =  0x41200000;
-	int stop_trig = 0x41210000;
+	int int_trig =  0x55000000;
+	int stop_trig = 0x56000000;
 	int value = 0;
 	unsigned page_addr, page_offset,page_offset_save;
 	void *ptrt,*ptrt1;
@@ -25,11 +25,11 @@ int main(int argc, char *argv[])
     int LoopLED=0;
     int nWord,NPMT,CH1[5],CH2[5];
 	unsigned int bram[5];
-	bram[0] = 0x42000000;// ADC 1
-	bram[1] = 0x44000000;// ADC 2
-	bram[2] = 0x46000000;// ADC 3
-	bram[3] = 0x48000000;// ADC 4
-	bram[4] = 0x4A000000;// ADC 5
+	bram[0] = 0x50000000;// ADC 1
+	bram[1] = 0x51000000;// ADC 2
+	bram[2] = 0x52000000;// ADC 3
+	bram[3] = 0x53000000;// ADC 4
+	bram[4] = 0x54000000;// ADC 5
 	CH1[0]=1;
 	CH1[1]=3;
 	CH1[2]=5;

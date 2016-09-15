@@ -54,7 +54,7 @@ set rc [catch {
   set_property parent.project_path C:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.xpr [current_project]
   set_property ip_repo_paths {
   c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.cache/ip
-  C:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/ip_repo
+  c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/ip_repo
 } [current_project]
   set_property ip_output_repo c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.cache/ip [current_project]
   add_files -quiet C:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.runs/synth_1/uub_proto2_wrapper.dcp
@@ -81,6 +81,14 @@ set rc [catch {
   set_property processing_order EARLY [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_1_0/uub_proto2_axi_gpio_1_0_board.xdc]
   read_xdc -ref uub_proto2_axi_gpio_1_0 -cells U0 c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_1_0/uub_proto2_axi_gpio_1_0.xdc
   set_property processing_order EARLY [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_1_0/uub_proto2_axi_gpio_1_0.xdc]
+  read_xdc -prop_thru_buffers -ref uub_proto2_axi_gpio_2_0 -cells U0 c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_2_0/uub_proto2_axi_gpio_2_0_board.xdc
+  set_property processing_order EARLY [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_2_0/uub_proto2_axi_gpio_2_0_board.xdc]
+  read_xdc -ref uub_proto2_axi_gpio_2_0 -cells U0 c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_2_0/uub_proto2_axi_gpio_2_0.xdc
+  set_property processing_order EARLY [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_2_0/uub_proto2_axi_gpio_2_0.xdc]
+  read_xdc -prop_thru_buffers -ref uub_proto2_axi_gpio_3_0 -cells U0 c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_3_0/uub_proto2_axi_gpio_3_0_board.xdc
+  set_property processing_order EARLY [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_3_0/uub_proto2_axi_gpio_3_0_board.xdc]
+  read_xdc -ref uub_proto2_axi_gpio_3_0 -cells U0 c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_3_0/uub_proto2_axi_gpio_3_0.xdc
+  set_property processing_order EARLY [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_axi_gpio_3_0/uub_proto2_axi_gpio_3_0.xdc]
   read_xdc C:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/constrs_1/imports/constraints/uub_proto_wrapper.xdc
   read_xdc C:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/constrs_1/imports/constraints/vivado_uub.xdc
   read_xdc C:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/constrs_1/imports/constraints/Timing_contraints_uub.xdc
@@ -98,8 +106,8 @@ set rc [catch {
   set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_5/uub_proto2_auto_ds_5_clocks.xdc]
   read_xdc -ref uub_proto2_auto_ds_6 -cells inst c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_6/uub_proto2_auto_ds_6_clocks.xdc
   set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_6/uub_proto2_auto_ds_6_clocks.xdc]
-  read_xdc -ref uub_proto2_auto_us_0 -cells inst c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_us_0/uub_proto2_auto_us_0_clocks.xdc
-  set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_us_0/uub_proto2_auto_us_0_clocks.xdc]
+  read_xdc -ref uub_proto2_auto_us_0 -cells inst c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_us_0_1/uub_proto2_auto_us_0_clocks.xdc
+  set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_us_0_1/uub_proto2_auto_us_0_clocks.xdc]
   read_xdc -ref uub_proto2_auto_us_1 -cells inst c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_us_1/uub_proto2_auto_us_1_clocks.xdc
   set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_us_1/uub_proto2_auto_us_1_clocks.xdc]
   read_xdc -ref uub_proto2_auto_ds_7 -cells inst c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_7/uub_proto2_auto_ds_7_clocks.xdc
@@ -142,6 +150,10 @@ set rc [catch {
   set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_25/uub_proto2_auto_ds_25_clocks.xdc]
   read_xdc -ref uub_proto2_auto_ds_26 -cells inst c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_26/uub_proto2_auto_ds_26_clocks.xdc
   set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_26/uub_proto2_auto_ds_26_clocks.xdc]
+  read_xdc -ref uub_proto2_auto_ds_27 -cells inst c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_27/uub_proto2_auto_ds_27_clocks.xdc
+  set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_27/uub_proto2_auto_ds_27_clocks.xdc]
+  read_xdc -ref uub_proto2_auto_ds_28 -cells inst c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_28/uub_proto2_auto_ds_28_clocks.xdc
+  set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_ds_28/uub_proto2_auto_ds_28_clocks.xdc]
   read_xdc -ref uub_proto2_auto_us_2 -cells inst c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_us_2/uub_proto2_auto_us_2_clocks.xdc
   set_property processing_order LATE [get_files c:/Xilinx/Vivado/2015.2/progetti/uub_nitz_assiro/uub_proto2.srcs/sources_1/bd/uub_proto2/ip/uub_proto2_auto_us_2/uub_proto2_auto_us_2_clocks.xdc]
   link_design -top uub_proto2_wrapper -part xc7z020clg484-1

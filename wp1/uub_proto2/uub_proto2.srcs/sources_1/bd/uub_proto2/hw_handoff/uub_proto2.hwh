@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Sep 08 19:29:27 2016" VIVADOVERSION="2015.2.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Sep 15 00:41:16 2016" VIVADOVERSION="2015.2.1">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="uub_proto2" PACKAGE="clg484" SPEEDGRADE="-1"/>
 
@@ -114,11 +114,6 @@
         <CONNECTION INSTANCE="adc_inputs_util_ds_buf_6" PORT="IBUF_DS_N"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="TRIG_OUT" SIGIS="undef" SIGNAME="trigger_memory_block_sde_trigger_0_TRIG_OUT">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="TRIG_OUT"/>
-      </CONNECTIONS>
-    </PORT>
     <PORT DIR="I" NAME="TRIG_IN" SIGIS="undef" SIGNAME="External_Ports_TRIG_IN">
       <CONNECTIONS>
         <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="TRIG_IN"/>
@@ -190,16 +185,6 @@
         <CONNECTION INSTANCE="interface_uub_dfn3_0" PORT="HCONF"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="0" NAME="LED_ASY" RIGHT="0" SIGIS="undef" SIGNAME="util_vector_logic_0_Res">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="util_vector_logic_0" PORT="Res"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="LED_FLG" SIGIS="undef" SIGNAME="External_Ports_LED_FLG">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="LED_FLG"/>
-      </CONNECTIONS>
-    </PORT>
     <PORT DIR="O" NAME="RADIO_RST_OUT" SIGIS="undef" SIGNAME="interface_uub_dfn3_0_RADIO_RST_OUT">
       <CONNECTIONS>
         <CONNECTION INSTANCE="interface_uub_dfn3_0" PORT="RADIO_RST_OUT"/>
@@ -208,6 +193,21 @@
     <PORT DIR="I" NAME="GPS_PPS" SIGIS="undef" SIGNAME="External_Ports_GPS_PPS">
       <CONNECTIONS>
         <CONNECTION INSTANCE="interface_uub_dfn3_0" PORT="TRUE_PPS"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="0" NAME="LED_ASY" RIGHT="0" SIGIS="undef" SIGNAME="WP7_LED_Control_0_LED_OUT">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="LED_OUT"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="LED_FLG" SIGIS="undef" SIGNAME="External_Ports_LED_FLG">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="LED_FLG"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="TRIG_OUT" SIGIS="undef" SIGNAME="trigger_memory_block_sde_trigger_0_TRIG_OUT">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="TRIG_OUT"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="IO" NAME="DDR_cas_n" SIGIS="undef"/>
@@ -329,7 +329,7 @@
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="ADC2_mem" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ADC2_mem">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_4" PORT="dina"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_2" PORT="dina"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="ADC3_mem" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ADC3_mem">
@@ -339,16 +339,16 @@
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="ADC4_mem" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ADC4_mem">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_2" PORT="dina"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_4" PORT="dina"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="ADDR_mem" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ADDR_mem">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_0" PORT="addra"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="addra"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_4" PORT="addra"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="addra"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_2" PORT="addra"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_0" PORT="addra"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="15" NAME="Stop_Addr" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_Stop_Addr">
@@ -370,6 +370,11 @@
             <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="ASY_TRIG"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" NAME="NITZ_TRIG" SIGIS="undef" SIGNAME="trigger_memory_block_sde_trigger_0_TRIG_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="TRIG_OUT"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" NAME="EXT_TRIG" SIGIS="undef" SIGNAME="External_Ports_TRIG_IN">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TRIG_IN"/>
@@ -386,18 +391,18 @@
             <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="ENABLE_PPS"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="TRIG_TRESH" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_0_gpio2_io_o">
+        <PORT DIR="I" LEFT="31" NAME="TRIG_TRESH" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_gpio_io_o">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_0" PORT="gpio2_io_o"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="gpio_io_o"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="enable" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_enable">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_0" PORT="ena"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="ena"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_4" PORT="ena"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="ena"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_2" PORT="ena"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_0" PORT="ena"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -919,37 +924,37 @@
         </PORT>
         <PORT DIR="O" NAME="bram_rst_a" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_rst_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="rstb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="rstb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="bram_clk_a" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_clk_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="clkb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="clkb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="bram_en_a" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_en_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="enb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="enb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="bram_we_a" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_we_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="web"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="web"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="13" NAME="bram_addr_a" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_addr_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="addrb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="addrb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="bram_wrdata_a" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_wrdata_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="dinb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="dinb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="bram_rddata_a" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_rddata_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="doutb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="doutb"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1539,37 +1544,37 @@
         </PORT>
         <PORT DIR="O" NAME="bram_rst_a" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_rst_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="rstb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="rstb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="bram_clk_a" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_clk_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="clkb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="clkb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="bram_en_a" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_en_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="enb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="enb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="bram_we_a" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_we_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="web"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="web"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="13" NAME="bram_addr_a" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_addr_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="addrb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="addrb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="bram_wrdata_a" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_wrdata_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="dinb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="dinb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="bram_rddata_a" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_rddata_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="doutb"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="doutb"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1970,7 +1975,7 @@
         <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
         <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
         <PARAMETER NAME="C_TRI_DEFAULT" VALUE="0xFFFFFFFF"/>
-        <PARAMETER NAME="C_IS_DUAL" VALUE="1"/>
+        <PARAMETER NAME="C_IS_DUAL" VALUE="0"/>
         <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000000"/>
         <PARAMETER NAME="C_TRI_DEFAULT_2" VALUE="0xFFFFFFFF"/>
         <PARAMETER NAME="Component_Name" VALUE="uub_proto2_axi_gpio_0_0"/>
@@ -2082,11 +2087,6 @@
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="Config_Trig"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_0_gpio2_io_o">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="TRIG_TRESH"/>
-          </CONNECTIONS>
-        </PORT>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="zync_block_axi_interconnect_0_M19_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE">
@@ -2132,11 +2132,6 @@
             <PORTMAP PHYSICAL="gpio_io_o"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO2" TYPE="INITIATOR">
-          <PORTMAPS>
-            <PORTMAP PHYSICAL="gpio2_io_o"/>
-          </PORTMAPS>
-        </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
     <MODULE FULLNAME="/WP1_ADC_CONTROL/axi_gpio_1" HWVERSION="2.0" INSTANCE="WP1_ADC_CONTROL_axi_gpio_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_gpio" VLNV="xilinx.com:ip:axi_gpio:2.0">
@@ -2156,7 +2151,7 @@
         <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
         <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
         <PARAMETER NAME="C_TRI_DEFAULT" VALUE="0xFFFFFFFF"/>
-        <PARAMETER NAME="C_IS_DUAL" VALUE="1"/>
+        <PARAMETER NAME="C_IS_DUAL" VALUE="0"/>
         <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000000"/>
         <PARAMETER NAME="C_TRI_DEFAULT_2" VALUE="0xFFFFFFFF"/>
         <PARAMETER NAME="Component_Name" VALUE="uub_proto2_axi_gpio_1_0"/>
@@ -2268,11 +2263,6 @@
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="Stop_Addr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_1_gpio2_io_o">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="data_set"/>
-          </CONNECTIONS>
-        </PORT>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="zync_block_axi_interconnect_0_M20_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE">
@@ -2318,9 +2308,356 @@
             <PORTMAP PHYSICAL="gpio_io_i"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO2" TYPE="INITIATOR">
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/WP1_ADC_CONTROL/axi_gpio_2" HWVERSION="2.0" INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_gpio" VLNV="xilinx.com:ip:axi_gpio:2.0">
+      <DOCUMENTS>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_gpio;v=v2_0;d=pg144-axi-gpio.pdf"/>
+      </DOCUMENTS>
+      <PARAMETERS>
+        <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
+        <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
+        <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_ALL_INPUTS" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_INPUTS_2" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS" VALUE="1"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS_2" VALUE="0"/>
+        <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
+        <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
+        <PARAMETER NAME="C_TRI_DEFAULT" VALUE="0xFFFFFFFF"/>
+        <PARAMETER NAME="C_IS_DUAL" VALUE="0"/>
+        <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000000"/>
+        <PARAMETER NAME="C_TRI_DEFAULT_2" VALUE="0xFFFFFFFF"/>
+        <PARAMETER NAME="Component_Name" VALUE="uub_proto2_axi_gpio_2_0"/>
+        <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
+        <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
+        <PARAMETER NAME="GPIO2_BOARD_INTERFACE" VALUE="Custom"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0x55001000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0x55001FFF"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="50000000" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="zync_block_processing_system7_0_FCLK_CLK0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_processing_system7_0" PORT="FCLK_CLK0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_aresetn" SIGIS="rst" SIGNAME="zync_block_proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_proc_sys_reset_0" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="8" NAME="s_axi_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_awvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_awready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="s_axi_wdata" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="s_axi_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_wvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_wready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_bresp" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_bvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_bready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="8" NAME="s_axi_araddr" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_arvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_arready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="s_axi_rdata" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_rresp" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_rvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_rready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_AXI_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="TRIG_TRESH"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="zync_block_axi_interconnect_0_M21_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE">
+          <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
+          <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
+          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="ADDR_WIDTH" VALUE="9"/>
+          <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="RUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="BUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="8"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="8"/>
+          <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
+          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="50000000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="uub_proto2_processing_system7_0_0_FCLK_CLK0"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PORTMAPS>
-            <PORTMAP PHYSICAL="gpio2_io_o"/>
+            <PORTMAP PHYSICAL="s_axi_araddr"/>
+            <PORTMAP PHYSICAL="s_axi_arready"/>
+            <PORTMAP PHYSICAL="s_axi_arvalid"/>
+            <PORTMAP PHYSICAL="s_axi_awaddr"/>
+            <PORTMAP PHYSICAL="s_axi_awready"/>
+            <PORTMAP PHYSICAL="s_axi_awvalid"/>
+            <PORTMAP PHYSICAL="s_axi_bready"/>
+            <PORTMAP PHYSICAL="s_axi_bresp"/>
+            <PORTMAP PHYSICAL="s_axi_bvalid"/>
+            <PORTMAP PHYSICAL="s_axi_rdata"/>
+            <PORTMAP PHYSICAL="s_axi_rready"/>
+            <PORTMAP PHYSICAL="s_axi_rresp"/>
+            <PORTMAP PHYSICAL="s_axi_rvalid"/>
+            <PORTMAP PHYSICAL="s_axi_wdata"/>
+            <PORTMAP PHYSICAL="s_axi_wready"/>
+            <PORTMAP PHYSICAL="s_axi_wstrb"/>
+            <PORTMAP PHYSICAL="s_axi_wvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO" TYPE="INITIATOR">
+          <PORTMAPS>
+            <PORTMAP PHYSICAL="gpio_io_o"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/WP1_ADC_CONTROL/axi_gpio_3" HWVERSION="2.0" INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_gpio" VLNV="xilinx.com:ip:axi_gpio:2.0">
+      <DOCUMENTS>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_gpio;v=v2_0;d=pg144-axi-gpio.pdf"/>
+      </DOCUMENTS>
+      <PARAMETERS>
+        <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
+        <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
+        <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_ALL_INPUTS" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_INPUTS_2" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS" VALUE="1"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS_2" VALUE="0"/>
+        <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
+        <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
+        <PARAMETER NAME="C_TRI_DEFAULT" VALUE="0xFFFFFFFF"/>
+        <PARAMETER NAME="C_IS_DUAL" VALUE="0"/>
+        <PARAMETER NAME="C_DOUT_DEFAULT_2" VALUE="0x00000000"/>
+        <PARAMETER NAME="C_TRI_DEFAULT_2" VALUE="0xFFFFFFFF"/>
+        <PARAMETER NAME="Component_Name" VALUE="uub_proto2_axi_gpio_3_0"/>
+        <PARAMETER NAME="USE_BOARD_FLOW" VALUE="false"/>
+        <PARAMETER NAME="GPIO_BOARD_INTERFACE" VALUE="Custom"/>
+        <PARAMETER NAME="GPIO2_BOARD_INTERFACE" VALUE="Custom"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0x56001000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0x56001FFF"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="50000000" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="zync_block_processing_system7_0_FCLK_CLK0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_processing_system7_0" PORT="FCLK_CLK0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_aresetn" SIGIS="rst" SIGNAME="zync_block_proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_proc_sys_reset_0" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="8" NAME="s_axi_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_awvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_awready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="s_axi_wdata" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="s_axi_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_wvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_wready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_bresp" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_bvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_bready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="8" NAME="s_axi_araddr" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_arvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_arready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="s_axi_rdata" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="s_axi_rresp" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axi_rvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axi_rready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_AXI_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="delay_set"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="zync_block_axi_interconnect_0_M22_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE">
+          <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
+          <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
+          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="ADDR_WIDTH" VALUE="9"/>
+          <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="RUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="BUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="8"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="8"/>
+          <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
+          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="50000000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="uub_proto2_processing_system7_0_0_FCLK_CLK0"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PORTMAPS>
+            <PORTMAP PHYSICAL="s_axi_araddr"/>
+            <PORTMAP PHYSICAL="s_axi_arready"/>
+            <PORTMAP PHYSICAL="s_axi_arvalid"/>
+            <PORTMAP PHYSICAL="s_axi_awaddr"/>
+            <PORTMAP PHYSICAL="s_axi_awready"/>
+            <PORTMAP PHYSICAL="s_axi_awvalid"/>
+            <PORTMAP PHYSICAL="s_axi_bready"/>
+            <PORTMAP PHYSICAL="s_axi_bresp"/>
+            <PORTMAP PHYSICAL="s_axi_bvalid"/>
+            <PORTMAP PHYSICAL="s_axi_rdata"/>
+            <PORTMAP PHYSICAL="s_axi_rready"/>
+            <PORTMAP PHYSICAL="s_axi_rresp"/>
+            <PORTMAP PHYSICAL="s_axi_rvalid"/>
+            <PORTMAP PHYSICAL="s_axi_wdata"/>
+            <PORTMAP PHYSICAL="s_axi_wready"/>
+            <PORTMAP PHYSICAL="s_axi_wstrb"/>
+            <PORTMAP PHYSICAL="s_axi_wvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO" TYPE="INITIATOR">
+          <PORTMAPS>
+            <PORTMAP PHYSICAL="gpio_io_o"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>
@@ -2754,39 +3091,39 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="douta" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" NAME="clkb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_clk_a">
+        <PORT DIR="I" NAME="clkb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_clk_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_clk_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_clk_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="rstb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_rst_a">
+        <PORT DIR="I" NAME="rstb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_rst_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_rst_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_rst_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="enb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_en_a">
+        <PORT DIR="I" NAME="enb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_en_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_en_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_en_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="web" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_we_a">
+        <PORT DIR="I" LEFT="3" NAME="web" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_we_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_we_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_we_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="addrb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_addr_a">
+        <PORT DIR="I" LEFT="31" NAME="addrb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_addr_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_addr_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_addr_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="dinb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_wrdata_a">
+        <PORT DIR="I" LEFT="31" NAME="dinb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_wrdata_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_wrdata_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_wrdata_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="doutb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_rddata_a">
+        <PORT DIR="O" LEFT="31" NAME="doutb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_rddata_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_rddata_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_rddata_a"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -2806,7 +3143,7 @@
             <PORTMAP PHYSICAL="wea"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_BRAM_PORTA" NAME="BRAM_PORTB" TYPE="TARGET">
+        <BUSINTERFACE BUSNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_BRAM_PORTA" NAME="BRAM_PORTB" TYPE="TARGET">
           <PARAMETER NAME="MASTER_TYPE" VALUE="BRAM_CTRL"/>
           <PARAMETER NAME="MEM_ECC" VALUE="NONE"/>
           <PARAMETER NAME="MEM_WIDTH" VALUE="32"/>
@@ -2997,9 +3334,9 @@
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="ADDR_mem"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="dina" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ADC4_mem">
+        <PORT DIR="I" LEFT="31" NAME="dina" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ADC2_mem">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="ADC4_mem"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="ADC2_mem"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="douta" RIGHT="0" SIGIS="undef"/>
@@ -3252,39 +3589,39 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="douta" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" NAME="clkb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_clk_a">
+        <PORT DIR="I" NAME="clkb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_clk_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_clk_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_clk_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="rstb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_rst_a">
+        <PORT DIR="I" NAME="rstb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_rst_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_rst_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_rst_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="enb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_en_a">
+        <PORT DIR="I" NAME="enb" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_en_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_en_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_en_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="web" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_we_a">
+        <PORT DIR="I" LEFT="3" NAME="web" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_we_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_we_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_we_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="addrb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_addr_a">
+        <PORT DIR="I" LEFT="31" NAME="addrb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_addr_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_addr_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_addr_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="dinb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_wrdata_a">
+        <PORT DIR="I" LEFT="31" NAME="dinb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_wrdata_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_wrdata_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_wrdata_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="doutb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_bram_rddata_a">
+        <PORT DIR="O" LEFT="31" NAME="doutb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_bram_rddata_a">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="bram_rddata_a"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="bram_rddata_a"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -3304,7 +3641,7 @@
             <PORTMAP PHYSICAL="wea"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="WP1_ADC_CONTROL_axi_bram_ctrl_1_BRAM_PORTA" NAME="BRAM_PORTB" TYPE="TARGET">
+        <BUSINTERFACE BUSNAME="WP1_ADC_CONTROL_axi_bram_ctrl_3_BRAM_PORTA" NAME="BRAM_PORTB" TYPE="TARGET">
           <PARAMETER NAME="MASTER_TYPE" VALUE="BRAM_CTRL"/>
           <PARAMETER NAME="MEM_ECC" VALUE="NONE"/>
           <PARAMETER NAME="MEM_WIDTH" VALUE="32"/>
@@ -3495,9 +3832,9 @@
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="ADDR_mem"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="dina" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ADC2_mem">
+        <PORT DIR="I" LEFT="31" NAME="dina" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ADC4_mem">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="ADC2_mem"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="ADC4_mem"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="douta" RIGHT="0" SIGIS="undef"/>
@@ -3579,12 +3916,12 @@
       <PORTS>
         <PORT DIR="O" NAME="LED_OUT" SIGIS="undef" SIGNAME="WP7_LED_Control_0_LED_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="util_vector_logic_0" PORT="Op2"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="LED_ASY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="PPS" SIGIS="undef" SIGNAME="interface_uub_dfn3_0_PPS">
+        <PORT DIR="I" NAME="PPS" SIGIS="undef" SIGNAME="clock_1pps_0_CLK1PPS">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="interface_uub_dfn3_0" PORT="PPS"/>
+            <CONNECTION INSTANCE="clock_1pps_0" PORT="CLK1PPS"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="ASY_TRIG" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ASY_TRIG">
@@ -3602,9 +3939,9 @@
             <CONNECTION INSTANCE="zync_block_proc_sys_reset_0" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="data_set" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_1_gpio2_io_o">
+        <PORT DIR="I" LEFT="31" NAME="delay_set" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_gpio_io_o">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_1" PORT="gpio2_io_o"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="gpio_io_o"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="ENABLE_PPS" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_WP1_ADC_Control_0_ENABLE_PPS">
@@ -4076,7 +4413,11 @@
             <CONNECTION INSTANCE="zync_block_proc_sys_reset_0" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="interrupt" SENSITIVITY="EDGE_RISING" SIGIS="INTERRUPT"/>
+        <PORT DIR="O" NAME="interrupt" SENSITIVITY="EDGE_RISING" SIGIS="INTERRUPT" SIGNAME="axi_uartlite_0_interrupt">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_processing_system7_0" PORT="IRQ_F2P"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" LEFT="3" NAME="s_axi_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_uartlite_0_s_axi_awaddr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M05_AXI_awaddr"/>
@@ -4235,6 +4576,7 @@
         <PORT DIR="O" NAME="CLK1PPS" SIGIS="undef" SIGNAME="clock_1pps_0_CLK1PPS">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interface_uub_dfn3_0" PORT="FAKE_PPS"/>
+            <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="PPS"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -5139,7 +5481,6 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="ONE_PPS"/>
             <CONNECTION INSTANCE="trigger_memory_block_time_tagging_0" PORT="pps"/>
-            <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="PPS"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="3" NAME="s00_axi_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="interface_uub_dfn3_0_s00_axi_awaddr">
@@ -10464,6 +10805,7 @@
         <PORT DIR="O" NAME="TRIG_OUT" SIGIS="undef" SIGNAME="trigger_memory_block_sde_trigger_0_TRIG_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TRIG_OUT"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="NITZ_TRIG"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="5" NAME="P6X" RIGHT="1" SIGIS="undef" SIGNAME="trigger_memory_block_sde_trigger_0_P6X">
@@ -10471,11 +10813,7 @@
             <CONNECTION INSTANCE="External_Ports" PORT="P6X"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="LEDBAR" SIGIS="undef" SIGNAME="trigger_memory_block_sde_trigger_0_LEDBAR">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="util_vector_logic_0" PORT="Op1"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="LEDBAR" SIGIS="undef"/>
         <PORT CLKFREQUENCY="50000000" DIR="I" NAME="s00_axi_aclk" SIGIS="clk" SIGNAME="zync_block_processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zync_block_processing_system7_0" PORT="FCLK_CLK0"/>
@@ -23482,6 +23820,7 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="clock_1pps_0" PORT="CLK120"/>
             <CONNECTION INSTANCE="interface_uub_dfn3_0" PORT="CLK120"/>
+            <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="clock"/>
             <CONNECTION INSTANCE="adc_inputs_ddr_synchronizer_24bit_0" PORT="CLK"/>
             <CONNECTION INSTANCE="adc_inputs_ddr_synchronizer_24bit_1" PORT="CLK"/>
             <CONNECTION INSTANCE="adc_inputs_ddr_synchronizer_24bit_2" PORT="CLK"/>
@@ -23500,34 +23839,6 @@
             <CONNECTION INSTANCE="filter_block_fir_compiler_1" PORT="aclk"/>
             <CONNECTION INSTANCE="filter_block_fir_compiler_0" PORT="aclk"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="FPGA_CK"/>
-            <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="clock"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE FULLNAME="/util_vector_logic_0" HWVERSION="2.0" INSTANCE="util_vector_logic_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="util_vector_logic" VLNV="xilinx.com:ip:util_vector_logic:2.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="C_OPERATION" VALUE="or"/>
-        <PARAMETER NAME="C_SIZE" VALUE="1"/>
-        <PARAMETER NAME="Component_Name" VALUE="uub_proto2_util_vector_logic_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="I" LEFT="0" NAME="Op1" RIGHT="0" SIGIS="undef" SIGNAME="trigger_memory_block_sde_trigger_0_LEDBAR">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="LEDBAR"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="Op2" RIGHT="0" SIGIS="undef" SIGNAME="WP7_LED_Control_0_LED_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="LED_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="0" NAME="Res" RIGHT="0" SIGIS="undef" SIGNAME="util_vector_logic_0_Res">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="LED_ASY"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -23536,7 +23847,7 @@
     <MODULE FULLNAME="/xlconstant_0" HWVERSION="1.1" INSTANCE="xlconstant_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="CONST_VAL" VALUE="11111111"/>
+        <PARAMETER NAME="CONST_VAL" VALUE="10101010"/>
         <PARAMETER NAME="CONST_WIDTH" VALUE="8"/>
         <PARAMETER NAME="Component_Name" VALUE="uub_proto2_xlconstant_0_1"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
@@ -24147,7 +24458,7 @@
       </DOCUMENTS>
       <PARAMETERS>
         <PARAMETER NAME="NUM_SI" VALUE="1"/>
-        <PARAMETER NAME="NUM_MI" VALUE="21"/>
+        <PARAMETER NAME="NUM_MI" VALUE="23"/>
         <PARAMETER NAME="STRATEGY" VALUE="0"/>
         <PARAMETER NAME="ENABLE_ADVANCED_OPTIONS" VALUE="0"/>
         <PARAMETER NAME="ENABLE_PROTOCOL_CHECKERS" VALUE="0"/>
@@ -24674,6 +24985,26 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="M20_ARESETN" RIGHT="0" SIGIS="rst" SIGNAME="zync_block_proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_proc_sys_reset_0" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_ACLK" SIGIS="clk" SIGNAME="zync_block_processing_system7_0_FCLK_CLK0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_processing_system7_0" PORT="FCLK_CLK0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M21_ARESETN" RIGHT="0" SIGIS="rst" SIGNAME="zync_block_proc_sys_reset_0_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_proc_sys_reset_0" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_ACLK" SIGIS="clk" SIGNAME="zync_block_processing_system7_0_FCLK_CLK0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="zync_block_processing_system7_0" PORT="FCLK_CLK0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M22_ARESETN" RIGHT="0" SIGIS="rst" SIGNAME="zync_block_proc_sys_reset_0_peripheral_aresetn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="zync_block_proc_sys_reset_0" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
@@ -27653,6 +27984,176 @@
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_1" PORT="s_axi_wvalid"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" LEFT="8" NAME="M21_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_arready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_arvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="8" NAME="M21_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_awready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_awvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_bready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M21_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_bvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M21_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_rready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M21_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_rvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M21_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M21_AXI_wready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M21_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M21_AXI_wvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_2_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="8" NAME="M22_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_arready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_arvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="8" NAME="M22_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_awready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_awvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_bready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M22_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_bvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M22_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_rready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M22_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_rvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M22_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M22_AXI_wready" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M22_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M22_AXI_wvalid" SIGIS="undef" SIGNAME="WP1_ADC_CONTROL_axi_gpio_3_s_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="M06_AXI_awaddr" SIGIS="undef"/>
         <PORT DIR="O" NAME="M06_AXI_awlen" SIGIS="undef"/>
         <PORT DIR="O" NAME="M06_AXI_awsize" SIGIS="undef"/>
@@ -28406,6 +28907,48 @@
             <PORTMAP PHYSICAL="M20_AXI_wready"/>
             <PORTMAP PHYSICAL="M20_AXI_wstrb"/>
             <PORTMAP PHYSICAL="M20_AXI_wvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="zync_block_axi_interconnect_0_M21_AXI" DATAWIDTH="32" NAME="M21_AXI" TYPE="MASTER">
+          <PORTMAPS>
+            <PORTMAP PHYSICAL="M21_AXI_araddr"/>
+            <PORTMAP PHYSICAL="M21_AXI_arready"/>
+            <PORTMAP PHYSICAL="M21_AXI_arvalid"/>
+            <PORTMAP PHYSICAL="M21_AXI_awaddr"/>
+            <PORTMAP PHYSICAL="M21_AXI_awready"/>
+            <PORTMAP PHYSICAL="M21_AXI_awvalid"/>
+            <PORTMAP PHYSICAL="M21_AXI_bready"/>
+            <PORTMAP PHYSICAL="M21_AXI_bresp"/>
+            <PORTMAP PHYSICAL="M21_AXI_bvalid"/>
+            <PORTMAP PHYSICAL="M21_AXI_rdata"/>
+            <PORTMAP PHYSICAL="M21_AXI_rready"/>
+            <PORTMAP PHYSICAL="M21_AXI_rresp"/>
+            <PORTMAP PHYSICAL="M21_AXI_rvalid"/>
+            <PORTMAP PHYSICAL="M21_AXI_wdata"/>
+            <PORTMAP PHYSICAL="M21_AXI_wready"/>
+            <PORTMAP PHYSICAL="M21_AXI_wstrb"/>
+            <PORTMAP PHYSICAL="M21_AXI_wvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="zync_block_axi_interconnect_0_M22_AXI" DATAWIDTH="32" NAME="M22_AXI" TYPE="MASTER">
+          <PORTMAPS>
+            <PORTMAP PHYSICAL="M22_AXI_araddr"/>
+            <PORTMAP PHYSICAL="M22_AXI_arready"/>
+            <PORTMAP PHYSICAL="M22_AXI_arvalid"/>
+            <PORTMAP PHYSICAL="M22_AXI_awaddr"/>
+            <PORTMAP PHYSICAL="M22_AXI_awready"/>
+            <PORTMAP PHYSICAL="M22_AXI_awvalid"/>
+            <PORTMAP PHYSICAL="M22_AXI_bready"/>
+            <PORTMAP PHYSICAL="M22_AXI_bresp"/>
+            <PORTMAP PHYSICAL="M22_AXI_bvalid"/>
+            <PORTMAP PHYSICAL="M22_AXI_rdata"/>
+            <PORTMAP PHYSICAL="M22_AXI_rready"/>
+            <PORTMAP PHYSICAL="M22_AXI_rresp"/>
+            <PORTMAP PHYSICAL="M22_AXI_rvalid"/>
+            <PORTMAP PHYSICAL="M22_AXI_wdata"/>
+            <PORTMAP PHYSICAL="M22_AXI_wready"/>
+            <PORTMAP PHYSICAL="M22_AXI_wstrb"/>
+            <PORTMAP PHYSICAL="M22_AXI_wvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>
@@ -31060,6 +31603,7 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_uartlite_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="interface_uub_dfn3_0" PORT="s00_axi_aresetn"/>
+            <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="reset"/>
             <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="s00_axi_aresetn"/>
             <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="s_axi_intr_aresetn"/>
             <CONNECTION INSTANCE="trigger_memory_block_time_tagging_0" PORT="s00_axi_aresetn"/>
@@ -31077,20 +31621,21 @@
             <CONNECTION INSTANCE="trigger_memory_block_shower_memory_block_axi_crossbar_2" PORT="aresetn"/>
             <CONNECTION INSTANCE="trigger_memory_block_shower_memory_block_axi_crossbar_3" PORT="aresetn"/>
             <CONNECTION INSTANCE="trigger_memory_block_shower_memory_block_axi_crossbar_4" PORT="aresetn"/>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="RSTn"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_2" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_4" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" PORT="s_axi_aresetn"/>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_0" PORT="rsta"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_1" PORT="rsta"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_4" PORT="rsta"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_3" PORT="rsta"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_2" PORT="rsta"/>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_1" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_0" PORT="s_axi_aresetn"/>
-            <CONNECTION INSTANCE="WP7_LED_Control_0" PORT="reset"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_blk_mem_gen_0" PORT="rsta"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_0" PORT="s_axi_aresetn"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_aresetn"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_aresetn"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_WP1_ADC_Control_0" PORT="RSTn"/>
             <CONNECTION INSTANCE="zync_block_axi_cdma_0" PORT="s_axi_lite_aresetn"/>
             <CONNECTION INSTANCE="zync_block_axi_interconnect_1" PORT="S00_ARESETN"/>
             <CONNECTION INSTANCE="zync_block_axi_interconnect_1" PORT="S01_ARESETN"/>
@@ -31125,6 +31670,8 @@
             <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M18_ARESETN"/>
             <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M19_ARESETN"/>
             <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M20_ARESETN"/>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_ARESETN"/>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_ARESETN"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -31166,7 +31713,7 @@
         <PARAMETER NAME="C_S_AXI_HP3_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_M_AXI_GP0_THREAD_ID_WIDTH" VALUE="12"/>
         <PARAMETER NAME="C_M_AXI_GP1_THREAD_ID_WIDTH" VALUE="12"/>
-        <PARAMETER NAME="C_NUM_F2P_INTR_INPUTS" VALUE="2"/>
+        <PARAMETER NAME="C_NUM_F2P_INTR_INPUTS" VALUE="3"/>
         <PARAMETER NAME="C_IRQ_F2P_MODE" VALUE="DIRECT"/>
         <PARAMETER NAME="C_DQ_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_DQS_WIDTH" VALUE="4"/>
@@ -31500,7 +32047,7 @@
         <PARAMETER NAME="PCW_S_AXI_HP2_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="PCW_S_AXI_HP3_ID_WIDTH" VALUE="6"/>
         <PARAMETER NAME="PCW_S_AXI_HP3_DATA_WIDTH" VALUE="64"/>
-        <PARAMETER NAME="PCW_NUM_F2P_INTR_INPUTS" VALUE="2"/>
+        <PARAMETER NAME="PCW_NUM_F2P_INTR_INPUTS" VALUE="3"/>
         <PARAMETER NAME="PCW_EN_DDR" VALUE="1"/>
         <PARAMETER NAME="PCW_EN_SMC" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_QSPI" VALUE="1"/>
@@ -32485,8 +33032,9 @@
             <CONNECTION INSTANCE="zync_block_axi_interconnect_1" PORT="M07_AXI_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="IRQ_F2P" RIGHT="0" SENSITIVITY="NULL:LEVEL_HIGH" SIGIS="INTERRUPT" SIGNAME="trigger_memory_block_sde_trigger_0_irq &amp; zync_block_axi_cdma_0_cdma_introut">
+        <PORT DIR="I" LEFT="2" NAME="IRQ_F2P" RIGHT="0" SENSITIVITY="NULL:NULL:LEVEL_HIGH" SIGIS="INTERRUPT" SIGNAME="axi_uartlite_0_interrupt &amp; trigger_memory_block_sde_trigger_0_irq &amp; zync_block_axi_cdma_0_cdma_introut">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_uartlite_0" PORT="interrupt"/>
             <CONNECTION INSTANCE="trigger_memory_block_sde_trigger_0" PORT="irq"/>
             <CONNECTION INSTANCE="zync_block_axi_cdma_0" PORT="cdma_introut"/>
           </CONNECTIONS>
@@ -32516,9 +33064,11 @@
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_4" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_1" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_2" PORT="s_axi_aclk"/>
-            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_0" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_1" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_0" PORT="s_axi_aclk"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_0" PORT="s_axi_aclk"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" PORT="s_axi_aclk"/>
+            <CONNECTION INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="zync_block_proc_sys_reset_0" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="zync_block_processing_system7_0" PORT="M_AXI_GP0_ACLK"/>
             <CONNECTION INSTANCE="zync_block_axi_cdma_0" PORT="m_axi_aclk"/>
@@ -32558,6 +33108,8 @@
             <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M18_ACLK"/>
             <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M19_ACLK"/>
             <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M20_ACLK"/>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M21_ACLK"/>
+            <CONNECTION INSTANCE="zync_block_axi_interconnect_0" PORT="M22_ACLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="208333328" DIR="O" NAME="FCLK_CLK1" SIGIS="clk"/>
@@ -32798,7 +33350,9 @@
         <MEMRANGE ADDRESSBLOCK="Mem0" BASENAME="C_S_AXI_BASEADDR" BASEVALUE="0x53000000" HIGHNAME="C_S_AXI_HIGHADDR" HIGHVALUE="0x53003FFF" INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="MEMORY" SLAVEBUSINTERFACE="S_AXI"/>
         <MEMRANGE ADDRESSBLOCK="Mem0" BASENAME="C_S_AXI_BASEADDR" BASEVALUE="0x54000000" HIGHNAME="C_S_AXI_HIGHADDR" HIGHVALUE="0x54003FFF" INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_4" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="MEMORY" SLAVEBUSINTERFACE="S_AXI"/>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0x55000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0x55000FFF" INSTANCE="WP1_ADC_CONTROL_axi_gpio_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0x55001000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0x55001FFF" INSTANCE="WP1_ADC_CONTROL_axi_gpio_2" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0x56000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0x56000FFF" INSTANCE="WP1_ADC_CONTROL_axi_gpio_1" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+        <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0x56001000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0x56001FFF" INSTANCE="WP1_ADC_CONTROL_axi_gpio_3" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
         <MEMRANGE ADDRESSBLOCK="Reg" BASENAME="C_BASEADDR" BASEVALUE="0x7E200000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0x7E20FFFF" INSTANCE="zync_block_axi_cdma_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="M_AXI_GP0" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI_LITE"/>
       </MEMORYMAP>
       <PERIPHERALS>
@@ -32819,7 +33373,9 @@
         <PERIPHERAL INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_3"/>
         <PERIPHERAL INSTANCE="WP1_ADC_CONTROL_axi_bram_ctrl_4"/>
         <PERIPHERAL INSTANCE="WP1_ADC_CONTROL_axi_gpio_0"/>
+        <PERIPHERAL INSTANCE="WP1_ADC_CONTROL_axi_gpio_2"/>
         <PERIPHERAL INSTANCE="WP1_ADC_CONTROL_axi_gpio_1"/>
+        <PERIPHERAL INSTANCE="WP1_ADC_CONTROL_axi_gpio_3"/>
         <PERIPHERAL INSTANCE="zync_block_axi_cdma_0"/>
       </PERIPHERALS>
     </MODULE>

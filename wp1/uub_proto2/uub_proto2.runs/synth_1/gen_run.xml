@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1473355768">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1473892877">
   <File Type="RDS-DCP" Name="uub_proto2_wrapper.dcp"/>
   <File Type="RUN-CONSTRS" Name="$PDATADIR/runs/synth_1/constrs_in.xml"/>
   <File Type="RDS-UTIL-PB" Name="uub_proto2_wrapper_utilization_synth.pb"/>
@@ -53,6 +53,7 @@
     <File Path="$PSRCDIR/sources_1/bd/uub_proto2/ip/uub_proto2_delay_input_0_0/uub_proto2_delay_input_0_0.upgrade_log"/>
     <File Path="$PSRCDIR/sources_1/bd/uub_proto2/ip/uub_proto2_delay_input_0_1/uub_proto2_delay_input_0_1.upgrade_log"/>
     <File Path="$PSRCDIR/sources_1/bd/uub_proto2/ip/uub_proto2_WP1_ADC_Control_0_0/uub_proto2_WP1_ADC_Control_0_0.upgrade_log"/>
+    <File Path="$PSRCDIR/sources_1/bd/uub_proto2/ip/uub_proto2_WP7_LED_Control_0_0/uub_proto2_WP7_LED_Control_0_0.upgrade_log"/>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="uub_proto2_wrapper"/>

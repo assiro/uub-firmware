@@ -98,18 +98,18 @@ int main()
 											pabort("can't get max speed hz");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
 										char *buffer;
-/*										char buf[10];
+										char buf[10];
 										file=spi_init("/dev/spidev0.0"); //dev
-*/
+
 										buf[0] = 0x41;
 										buf[1] = 0xFF;
 										spi_write(0xE6,0x0E,2,buf,file); //this will write value 0x41FF to the address 0xE60E
 
 										buffer=(char *)spi_read(0xE6,0x0E,4,file); //reading the address 0xE60E
 
-
+*/
 
 
 										if (write(fd, cmd2channel, sizeof(cmd2channel)) != sizeof(cmd2channel))
@@ -123,8 +123,8 @@ int main()
 												exit(3);
 										}
 
-
-										if (write(fd, NormalMode, sizeof(NormalMode)) != sizeof(NormalMode)) {
+								//		if (write(fd, NormalMode, sizeof(NormalMode)) != sizeof(NormalMode)) {
+										if (write(fd, TestModeA5, sizeof(TestModeA5)) != sizeof(TestModeA5)) {
 												exit(3);
 										}
 
