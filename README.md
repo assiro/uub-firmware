@@ -4,6 +4,7 @@ uub-firmware is a Vivado Project for Xilinx Zynq 7020 on UUB for Auger experimen
 WP1 IP Block to analize ADC data from UUB's channels (for debugging and monitoring) in parallel with ufficial trigger (D.Nitz - WP2)
 - Added petalinux applications under SDK 
 Applications implemented:
+
  Name ---_- contents ---- Author
 - scope - Real time monitor of input signals 10 channels (R. Assiro)
 - led continus led shot (R.Assiro)
