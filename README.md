@@ -5,7 +5,7 @@ WP1 IP Block to analize ADC data from UUB's channels (for debugging and monitori
 - Added petalinux applications under SDK 
 Applications implemented:
 
- Name ---_- contents ---- Author
+ Name ----- contents ---- Author
 - scope - Real time monitor of input signals 10 channels (R. Assiro)
 - led continus led shot (R.Assiro)
 - led_dac Intensity of lef shot (R.Assiro)
