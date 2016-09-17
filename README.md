@@ -5,14 +5,14 @@ WP1 IP Block to analize ADC data from UUB's channels (for debugging and monitori
 - Added petalinux applications under SDK 
 Applications implemented:
 
-scope (R. Assiro)
-led
-acquire
-adc
-uub_init (UUB intialization R. Assiro)
-slowc (Karl-Heinz)
-uub_init
-ssd_test (D. Martello)
-pmt_hv (D. Martello)
-trigger control (D. Nitz) developing (G. Marsella)
-All source code are available under SDK's workspace of uub-firmware (platform for developing software)
+- scope (R. Assiro)
+- led
+- acquire
+- adc
+- uub_init (UUB intialization R. Assiro)
+- slowc (Karl-Heinz)
+- uub_init
+- ssd_test (D. Martello)
+- pmt_hv (D. Martello)
+- trigger control (D. Nitz) developing (G. Marsella)
+- All source code are available under SDK's workspace of uub-firmware (platform for developing software)
