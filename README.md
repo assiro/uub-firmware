@@ -1,5 +1,5 @@
 # uub-firmware
-uub-firmware is the Vivado Project for Zynq 7020 on U.U.B. for Auger experiment
+uub-firmware is a Vivado Project for Xilinx Zynq 7020 on UUB for Auger experiment
 
 WP2 ufficial trigger
 
