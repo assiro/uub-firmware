@@ -14,7 +14,7 @@ Applications implemented:
 - acquire
 - adc
 - uub_init (UUB intialization R. Assiro)
-- slowc (Karl-Heinz)
+- slowc (K.H.Beker)
 - uub_init
 - ssd_test (D. Martello)
 - pmt_hv (D. Martello)
