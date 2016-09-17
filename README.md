@@ -1,6 +1,8 @@
 # uub-firmware
 uub-firmware is the Vivado Project for Zynq 7020 on U.U.B. for Auger experiment
+
 WP2 ufficial trigger
+
 WP1 update vivado project and SDK workspace
 
 WP1 IP Block to analize ADC data from UUB's channels (for debugging and monitoring) in parallel with ufficial trigger (D.Nitz - WP2)
