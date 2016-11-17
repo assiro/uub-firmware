@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;gauge/src/slowread_Sb.c&apos; to &apos;gauge.c&apos;" description="Rename resource &apos;slowread_Sb.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/slowread_Sb.c" name="gauge.c" stamp="1477239990954" updateReferences="true"/>
+</session>

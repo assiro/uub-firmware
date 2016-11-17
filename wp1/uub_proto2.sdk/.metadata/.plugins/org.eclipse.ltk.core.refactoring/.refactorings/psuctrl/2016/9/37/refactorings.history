@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;psuctrl/src/libftd2xx.a&apos; to &apos;libftd2xx.h&apos;" description="Rename resource &apos;libftd2xx.a&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/libftd2xx.a" name="libftd2xx.h" stamp="1473956433364" updateReferences="true"/>
+</session>

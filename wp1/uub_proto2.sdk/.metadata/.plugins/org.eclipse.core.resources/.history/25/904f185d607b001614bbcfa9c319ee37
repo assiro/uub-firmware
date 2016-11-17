@@ -1,0 +1,463 @@
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <unistd.h>
+#include <time.h>
+#include <stdlib.h>
+#include <ctype.h>
+//#include "../ftd2xx.h"
+
+const char *time0()
+{
+    time_t t = time(NULL);
+
+    struct tm *tmp = gmtime(&t);
+    if (tmp == NULL)
+        return "0000-00-00 --:--:--";
+
+    static char buf[1024];
+    if (strftime(buf, 1023, "%F %H:%M:%S", tmp)==0)
+        return "0000-00-00 --:--:--";
+
+    return buf;
+}
+
+const char *DecToStr(const unsigned char v)
+{
+    const char b0 = (v>>(0*4))&0xf;
+    const char b1 = (v>>(1*4))&0xf;
+
+    static char buf[3];
+
+    buf[0] = (b1>9 ? '7' : '0') + b1;     // 7[0x37] 0[0x30]
+    buf[1] = (b0>9 ? '7' : '0') + b0;     // 7[0x37] 0[0x30]
+    buf[2] = 0;
+
+    return buf;
+}
+
+const char *ShortToStr(const unsigned short val)
+{
+    const unsigned char *v = (const unsigned char*)(&val);
+
+    static char buf[5];
+    strncpy(buf,   DecToStr(v[1]), 2);
+    strncpy(buf+2, DecToStr(v[0]), 2);
+    buf[4] = 0;
+
+    return buf;
+}
+
+unsigned short StrToDec8(const char *v)
+{
+    const char v0 = v[0] - (v[0]>'9'?'7':'0');
+    const char v1 = v[1] - (v[1]>'9'?'7':'0');
+
+    return (v1&0xf) | ((v0&0xf)<<4);
+}
+
+unsigned short StrToDec16(const char *v)
+{
+    return StrToDec8(v+2) | (StrToDec8(v)<<8);
+}
+
+int SendCommand(const char *cmd, const char *data)
+{
+	const DWORD BUF_SIZE = 1024;
+
+	char cSum = 0;
+	
+	char cBufWrite[BUF_SIZE];
+	char cChk[BUF_SIZE];
+	
+	char * pcBufRead = NULL;
+	
+	DWORD	dwRxSize = 0;
+	DWORD 	dwBytesWritten, dwBytesRead;
+	
+	FT_STATUS	ftStatus;
+	FT_HANDLE	ftHandle;
+	
+	const int l = snprintf(cChk, BUF_SIZE-1, "\x02%s%s\x03", cmd, data);
+	
+	for (char *ptr=cChk; ptr<cChk+l; ptr++) cSum += *ptr;
+	
+	const int len = snprintf(cBufWrite, BUF_SIZE-1, "%s%s\r", cChk, DecToStr(cSum));
+	
+	ftStatus = FT_Open(0, &ftHandle);
+	
+	if(ftStatus != FT_OK) {
+		printf("FT_Open(%d) failed\n", 0);
+		return 1;
+	}
+
+	if((ftStatus = FT_SetBaudRate(ftHandle, FT_BAUD_38400)) != FT_OK) {
+		printf("Error FT_SetBaudRate(%d)\n", (int)ftStatus);
+		FT_Close(ftHandle);
+		return 1;
+	}
+	
+	if((ftStatus = FT_SetDataCharacteristics(ftHandle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_EVEN)) != FT_OK) {
+		printf("Error FT_SetDataCharacteristics(%d)\n", (int)ftStatus);
+		FT_Close(ftHandle);
+		return 1;
+	}
+	
+	ftStatus = FT_Write(ftHandle, cBufWrite, len, &dwBytesWritten);
+	
+	if (ftStatus != FT_OK) {
+		printf("Error FT_Write(%d)\n", (int)ftStatus);
+		FT_Close(ftHandle);
+		return 1;
+	}
+		
+	if (dwBytesWritten != (DWORD)len) {
+		printf("FT_Write only wrote %d (of %d) bytes\n", (int)dwBytesWritten, len);
+		FT_Close(ftHandle);
+		return 1;
+	}
+	
+	dwRxSize = 0;
+	
+	time_t now = time(0);
+	
+	while (dwRxSize == 0) {
+		usleep(250000);
+		ftStatus = FT_GetQueueStatus(ftHandle, &dwRxSize);
+		if (time(0)-now>3)
+        {
+            printf("E%s: read timeout [5s]\n", time0());
+            FT_Close(ftHandle);
+            return 7;
+        }
+	}
+	
+	if(ftStatus == FT_OK) {
+		pcBufRead = realloc(pcBufRead, dwRxSize);
+		memset(pcBufRead, 0xFF, dwRxSize);
+	
+		ftStatus = FT_Read(ftHandle, pcBufRead, dwRxSize, &dwBytesRead);
+	
+		if (ftStatus != FT_OK) {
+			printf("Error FT_Read(%d)\n", (int)ftStatus);
+			FT_Close(ftHandle);
+			return 1;
+		}
+    }
+	else {
+		printf("Error FT_GetQueueStatus(%d)\n", (int)ftStatus);	
+		FT_Close(ftHandle);
+		return 1;
+	}
+	
+	FT_Close(ftHandle);
+	
+	const char ret[3] =
+    {
+        tolower(cmd[0]),
+        tolower(cmd[1]),
+        tolower(cmd[2])
+    };
+	
+    const int L = dwBytesRead;
+	
+    if (L<8)
+    {
+        printf("E%s: Unexpected length of answer [%d]\n", time0(), L);
+        return 11;
+    }
+
+    if (pcBufRead[0]!=0x02 || pcBufRead[L-4]!=0x03)
+    {
+        printf("E%s: STX/EXT error\n", time0());
+        return 12;
+    }
+
+    cSum = 0;
+    for (char *ptr=pcBufRead; ptr<pcBufRead+L-3; ptr++) cSum += *ptr;
+
+    if (strncmp(pcBufRead+L-3, DecToStr(cSum), 2))
+    {
+        printf("E%s: Checksum error\n", time0());
+        return 13;
+    }
+
+    if (strncmp(pcBufRead+1, ret, 3) && strncmp(pcBufRead+1, "hxx", 3))
+        printf("W%s: Answer [%c%c%c] does not fit request [%s]\n",
+               time0(), pcBufRead[1], pcBufRead[2], pcBufRead[3], cmd);
+
+    // -------- Return without data -------
+
+    if (strncmp(pcBufRead+1, "hst", 3)==0 ||
+        strncmp(pcBufRead+1, "hof", 3)==0 ||
+        strncmp(pcBufRead+1, "hon", 3)==0 ||
+        strncmp(pcBufRead+1, "hcm", 3)==0 ||
+        strncmp(pcBufRead+1, "hre", 3)==0 ||
+        strncmp(pcBufRead+1, "hbv", 3)==0 ||
+        strncmp(pcBufRead+1, "hsc", 3)==0) {
+        if (L!=8) {
+            printf("W%s: Received %d bytes, expected 8 [%c%c%c]\n",
+                   time0(), L+1, pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+		}
+
+        printf("R%s: %c%c%c\n", time0(), pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+        return 0;
+    }
+
+    // -------- Return with one double -------
+
+    if (strncmp(pcBufRead+1, "hgt", 3)==0) // Temp
+    {
+        if (L!=12)
+            printf("W%s: Received %d bytes, expected 12 [%c%c%c]\n",
+                   time0(), L+1, pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+
+        printf("R%s: hgt %lf\n", time0(), -(StrToDec16(pcBufRead+4)*(1.907e-5)-1.035)/5.5e-3);
+        return 0;
+    }
+
+    if (strncmp(pcBufRead+1, "hgv", 3)==0) // Volt
+    {
+        if (L!=12)
+           printf("W%s: Received %d bytes, expected 12 [%c%c%c]\n",
+                   time0(), L+1, pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+
+        printf("R%s: hgv %lf\n", time0(), StrToDec16(pcBufRead+4)*1.812e-3);
+        return 0;
+    }
+
+    if (strncmp(pcBufRead+1, "hgc", 3)==0) // Current
+    {
+        if (L!=12)
+           printf("W%s: Received %d bytes, expected 12 [%c%c%c]\n",
+                   time0(), L+1, pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+
+        //printf("R%s: hgc %lf\n", time0(), StrToDec16(buf2+4)*4.980e-3);
+        printf("R%s: hgc %lf\n", time0(), StrToDec16(pcBufRead+4)*5.194e-3); // Rev.C
+        return 0;
+    }
+
+    if (strncmp(pcBufRead+1, "hgs", 3)==0) // Status
+    {
+        if (L!=12)
+           printf("W%s: Received %d bytes, expected 12 [%c%c%c]\n",
+                   time0(), L+1, pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+
+        printf("R%s: hgs 0x%02x\n", time0(), StrToDec16(pcBufRead+4));
+        return 0;
+    }
+
+    if (strncmp(pcBufRead+1, "hrc", 3)==0) // Power function
+    {
+        if (L!=12)
+           printf("W%s: Received %d bytes, expected 12 [%c%c%c]\n",
+                   time0(), L+1, pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+
+        printf("R%s: hrc 0x%x\n", time0(), StrToDec16(pcBufRead+4));
+        return 0;
+    }
+
+    // ------ Return with all data -----------
+
+    if (strncmp(pcBufRead+1, "hpo", 3)==0)
+    {
+        if (L!=28)
+           printf("W%s: Received %d bytes, expected 28 [%c%c%c]\n",
+                   time0(), L+1, pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+
+        printf("R%s: hpo 0x%x %lf %lf %lf %lf\n", time0(),
+               StrToDec16(pcBufRead+ 4),                           // status
+               StrToDec16(pcBufRead+ 8)*1.812e-3,                  // U out [Reserve in Rev.C]
+               StrToDec16(pcBufRead+12)*1.812e-3,                  // U mon
+               //StrToDec16(buf2+16)*4.980e-3,                  // I mon
+               StrToDec16(pcBufRead+16)*5.194e-3,                  // I mon [Rev.C]
+               (1.035-StrToDec16(pcBufRead+20)*(1.907e-5))/5.5e-3); // Temp
+
+        return 0;
+    }
+
+    if (strncmp(pcBufRead+1, "hrt", 3)==0)
+    {
+        if (L!=32)
+           printf("W%s: Received %d bytes, expected 32 [%c%c%c]\n",
+                   time0(), L+1, pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+
+        printf("R%s: hrt %lf %lf %lf %lf %lf %lf\n", time0(),
+               StrToDec16(pcBufRead+ 4)*1.507e-3,
+               StrToDec16(pcBufRead+ 8)*1.507e-3,
+               StrToDec16(pcBufRead+12)*5.225e-3,
+               StrToDec16(pcBufRead+16)*5.225e-3,
+               StrToDec16(pcBufRead+20)*1.812e-3,
+               (1.035-StrToDec16(pcBufRead+24)*1.907e-5)/5.5e-3);
+
+        return 0;
+    }
+
+    // ------------- Error returned -----------
+
+    if (strncmp(pcBufRead+1, "hxx", 3)==0)
+    {
+        if (L!=12)
+           printf("W%s: Received %d bytes, expected 12 [%c%c%c]\n",
+                   time0(), L+1, pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+
+         const unsigned short err = StrToDec16(pcBufRead+4);
+
+         const char *msg = "";
+         switch (err)
+         {
+         case 1:  msg = "Communication";  break;
+         case 2:  msg = "Timeout";        break;
+         case 3:  msg = "Syntax";         break;
+         case 4:  msg = "Checksum";       break;
+         case 5:  msg = "Command";        break;
+         case 6:  msg = "Parameter";      break;
+         case 7:  msg = "Parameter size"; break;
+         default: msg = "Unknown";        break;
+         }
+         printf("R%s: hxx %d [%s error]\n", time0(), err, msg);
+         return 1;
+    }
+
+    printf("E%s: returned id unknown [%c%c%c]\n", time0(), pcBufRead[1], pcBufRead[2], pcBufRead[3]);
+    return 2;
+	
+	if(pcBufRead) free(pcBufRead);
+	
+	return 0;
+}
+
+int SendHST(const char *argv[])
+{
+    double v[6];
+    for (int i=0; i<6; i++)
+        if (sscanf(argv[i+2], "%lf", v+i)!=1)
+            return 1;
+
+    unsigned short s[6] =
+    {
+        v[0] / 1.507e-3,  // tp1
+        v[1] / 1.507e-3,  // tp2
+        v[2] / 5.225e-2,  // t1
+        v[3] / 5.225e-2,  // t2
+        v[4] / 1.812e-3,  // vb
+        (1.035-v[5]*5.5e-3)/1.907e-5
+    };
+
+    char buf[6*4+1];
+
+    for (int i=0; i<6; i++)
+        strncpy(buf+4*i, ShortToStr(s[i]), 4);
+    buf[6*4] = 0;
+
+    return SendCommand("HST", buf);
+}
+
+int SendHBV(const char *argv)
+{
+    double v;
+    if (sscanf(argv, "%lf", &v)!=1)
+        return 1;
+
+    const unsigned short s = v / 1.812e-3;
+
+    char buf[5];
+    strncpy(buf, ShortToStr(s), 4);
+    buf[4] = 0;
+
+    return SendCommand("HBV", buf);
+}
+
+int PrintHelp()
+{
+    printf("\n"
+           "Command:\n"
+           "   psuctrl2 --help\n"
+           "   psuctrl2 CMD [args...]\n"
+           "\n"
+           "Possible commands are:\n"
+           "\n"
+           "  Reading:\n"
+           "    HPO     Get the values [stat Uset Umon Imon Tmon]\n"
+           "    HGV     Get the output voltage [Umon]\n"
+           "    HGC     Get the output current [Imon]\n"
+           "    HGS     Get the status [stat]\n"
+           "    HRC     Get power function [pf]\n"
+           "    HGT     Get sensor temperature [Tmon]\n"
+           "    HRT     Get the temperture correction factors [dT1' dT2' dT1 dT2 Ub Tb]\n"
+           "\n"
+           "  Control:\n"
+           "    HOF     Voltage output off\n"
+           "    HON     Voltage output on\n"
+           "    HRE     Power supply reset\n"
+           "\n"
+           "  Setting:\n"
+           "    HCM N   Switch temperature compensation mode [N=0|1]\n"
+           "    HBV U   Temporary setting for the reference voltage\n"
+           "    HSC pf  Set power function mode\n"
+           "\n"
+           "    HST dT1' dT2' dT1 dT2 Ub Tb\n"
+           "            Set the temperture correction factor\n"
+           "\n");
+    return 0;
+}
+
+int main(int argc, const char* argv[])
+{
+    // Split commandline arguments between
+    // -- arguments and others
+
+    for (int i=0; i<argc; i++)
+        if (strcmp(argv[i], "--help")==0)
+            return PrintHelp();
+
+    // --------- Commands without arguments -------
+
+    if (argc==2)
+    {
+        if (strcmp(argv[1], "HON")==0 ||
+            strcmp(argv[1], "HOF")==0 ||
+            strcmp(argv[1], "HRE")==0 ||
+            strcmp(argv[1], "HRT")==0 ||
+            strcmp(argv[1], "HGT")==0 ||
+            strcmp(argv[1], "HGV")==0 ||
+            strcmp(argv[1], "HGC")==0 ||
+            strcmp(argv[1], "HGS")==0 ||
+            strcmp(argv[1], "HPO")==0 ||
+            strcmp(argv[1], "HRH")==0 ||
+            strcmp(argv[1], "HRC")==0)
+            return SendCommand(argv[1], "");
+    }
+
+    // --------- Commands with 1 argument -------
+
+    if (argc==3)
+    {
+        if (strcmp(argv[1], "HBV")==0)
+            return SendHBV(argv[2]);
+
+        if (strcmp(argv[1], "HCM")==0)
+        {
+            if (strcmp(argv[2], "0") && strcmp(argv[2], "1"))
+                return PrintHelp();
+
+            return SendCommand("HCM", argv[2]);
+        }
+    }
+
+    // --------- Commands with 6 argument -------
+
+    if (argc==8)
+    {
+        if (strcmp(argv[1], "HST")==0)
+            return SendHST(argv);
+    }
+
+    // ------------- No valid command ------------
+
+    printf("E%s: Commandline syntax error (use --help for help)\n", time0());
+    return 127;
+}

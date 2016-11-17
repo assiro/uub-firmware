@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;trigger/src/Trigger_Sb.c&apos; to &apos;trigger.c&apos;" description="Rename resource &apos;Trigger_Sb.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/Trigger_Sb.c" name="trigger.c" stamp="1477679329004" updateReferences="true"/>
+</session>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;scope_Sb/src/scope_Sb.c&apos; to &apos;scope.c&apos;" description="Rename resource &apos;scope_Sb.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/scope_Sb.c" name="scope.c" stamp="1477583605409" updateReferences="true"/>
+</session>

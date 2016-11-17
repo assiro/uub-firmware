@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;lv_measure/src/hv_measure.c&apos; to &apos;lv_measure.c&apos;" description="Rename resource &apos;hv_measure.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/hv_measure.c" name="lv_measure.c" stamp="1478684923920" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;lv-measure/src/lv_measure.c&apos; to &apos;lv-measure.c&apos;" description="Rename resource &apos;lv_measure.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/lv_measure.c" name="lv-measure.c" stamp="1478691232627" updateReferences="true"/>
+</session>

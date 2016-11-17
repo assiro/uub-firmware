@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="uub_proto2_wrapper_hw_platform_2" key="programflash.hwplatform"/>
+	<item value="C:\Xilinx\Vivado\2015.2\progetti\PETALINUX\fsbl_uboot_allison\UBOOT.bin" key="uub_proto2_wrapper_hw_platform_0-imgFile"/>
+	<item value="Auto Detect" key="uub_proto2_wrapper_hw_platform_0-device"/>
+	<item value="Auto Detect" key="uub_proto2_wrapper_hw_platform_2-device"/>
+	<item value="C:\Xilinx\Vivado\2015.2\progetti\PETALINUX\nuovo_uboot\uboot.bin" key="uub_proto2_wrapper_hw_platform_2-imgFile"/>
+	<item value="qspi_single" key="uub_proto2_wrapper_hw_platform_2-flashType"/>
+	<item value="Local" key="uub_proto2_wrapper_hw_platform_2-target"/>
+	<item value="false" key="uub_proto2_wrapper_hw_platform_2-blankCheck"/>
+	<item value="" key="uub_proto2_wrapper_hw_platform_0-offSet"/>
+	<item value="Local" key="uub_proto2_wrapper_hw_platform_0-target"/>
+	<item value="false" key="uub_proto2_wrapper_hw_platform_2-verifyFlash"/>
+	<item value="" key="uub_proto2_wrapper_hw_platform_2-fsblFile"/>
+	<item value="false" key="uub_proto2_wrapper_hw_platform_0-blankCheck"/>
+	<item value="" key="uub_proto2_wrapper_hw_platform_2-offSet"/>
+	<item value="" key="com.xilinx.sdk.debug.sysgen.mdlName"/>
+	<item value="qspi_single" key="uub_proto2_wrapper_hw_platform_0-flashType"/>
+	<item value="false" key="uub_proto2_wrapper_hw_platform_0-verifyFlash"/>
+	<item value="" key="uub_proto2_wrapper_hw_platform_0-fsblFile"/>
+</section>

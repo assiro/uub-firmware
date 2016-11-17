@@ -1,80 +1,0 @@
-10
-
-dir
-226
-svn+ssh://server1.auger.mtu.edu/afs/auger.mtu.edu/home/auger/svnroot/beyond_2015_sde_pld/trunk/ip_repo/sde_trigger
-svn+ssh://server1.auger.mtu.edu/afs/auger.mtu.edu/home/auger/svnroot/beyond_2015_sde_pld
-
-
-
-2016-07-27T17:08:12.262752Z
-217
-dfnitz
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-85abf1e9-9f45-4ec6-b061-e04425ae0b59
-
-component.xml
-file
-234
-
-
-
-2016-08-14T17:58:12.000000Z
-38e70a750849ec5bc1553ec024009c2f
-2016-08-15T00:05:08.346091Z
-234
-dfnitz
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-96962
-
-bd
-dir
-
-hdl
-dir
-
-example_designs
-dir
-
-sde_trigger_v1_2_project
-dir
-
-xgui
-dir
-
-drivers
-dir
-
